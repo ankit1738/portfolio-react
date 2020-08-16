@@ -26,7 +26,7 @@ function Header() {
                             <Link underline="none" href="#experience">
                                 Experience
                             </Link>
-                            <Link underline="none" href="#">
+                            <Link underline="none" href="#skills">
                                 Skills
                             </Link>
                             <Link underline="none" href="#">

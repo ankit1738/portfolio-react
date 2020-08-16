@@ -44,4 +44,5 @@ export const StyledTypography = styled(Typography)((props) => ({
 
 export const StyledTimeline = styled(Timeline)((props) => ({
     color: props.theme.secondary,
+    padding: "0",
 }));

@@ -19,6 +19,7 @@ export function TimelineComponent(props) {
                 <TimelineOppositeContent
                     style={{
                         flex: 0,
+                        padding: 0,
                     }}></TimelineOppositeContent>
                 <TimelineSeparator>
                     <TimelineDot />
@@ -67,6 +68,7 @@ export function TimelineLastComponent() {
                 <TimelineOppositeContent
                     style={{
                         flex: 0,
+                        padding: 0,
                     }}></TimelineOppositeContent>
                 <TimelineSeparator>
                     <TimelineDot />

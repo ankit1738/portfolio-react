@@ -20,18 +20,18 @@ function Experience() {
     return (
         <Container maxWidth="lg" className={classes.root}>
             <Grid container>
-                <Grid item lg={2}>
+                <Grid item md={2}>
                     <Typography variant="h4" className={classes.heading}>
                         Experience
                     </Typography>
                 </Grid>
-                <Grid item lg={10} className={classes.headingGrid}>
+                <Grid item md={10} className={classes.headingGrid}>
                     <Divider className={classes.divider} />
                 </Grid>
             </Grid>
             <Container maxWidth="lg" className={classes.contentContainer}>
                 <Grid container justify="center">
-                    <Grid item lg={10}>
+                    <Grid item md={10}>
                         <Timeline>
                             <TimelineComponent
                                 name="Mantra Labs Global"
