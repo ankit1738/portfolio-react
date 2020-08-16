@@ -35,20 +35,23 @@ export function TimelineComponent(props) {
                                 </Grid>
                                 <Grid item lg={12}>
                                     <Typography variant="body1">
-                                        {props.degree} , {props.course}
+                                        {props.designation} · {props.type}
                                     </Typography>
                                 </Grid>
                                 <Grid item lg={12}>
                                     <Typography variant="body1">
-                                        Grade: {props.grade} {props.gradePoint}
+                                        {props.startDate} - {props.endDate} · 1
+                                        Year
+                                    </Typography>
+                                </Grid>
+                                <Grid item lg={12} className={classes.desc}>
+                                    <Typography variant="body2">
+                                        {props.desc}
                                     </Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid item lg={3}>
-                            <Typography variant="body1" align="right">
-                                {props.startDate} - {props.endDate}
-                            </Typography>
                             <Typography variant="body1" align="right">
                                 {props.location}
                             </Typography>

@@ -20,10 +20,10 @@ function Header() {
                             Ankit Kumar
                         </Typography>
                         <div className={classes.right}>
-                            <Link underline="none" href="#">
-                                About
+                            <Link underline="none" href="#education">
+                                Education
                             </Link>
-                            <Link underline="none" href="#">
+                            <Link underline="none" href="#experience">
                                 Experience
                             </Link>
                             <Link underline="none" href="#">

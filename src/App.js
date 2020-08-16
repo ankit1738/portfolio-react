@@ -4,6 +4,7 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import Header from "./Views/Header/index";
 import About from "./Views/About/index";
 import Education from "./Views/Education/index";
+import Experience from "./Views/Experience/index";
 
 function App() {
     const theme = createMuiTheme({
@@ -16,7 +17,10 @@ function App() {
             <ThemeProvider theme={theme}>
                 <Header />
                 <About />
+                <a id="education"></a>
                 <Education />
+                <a id="experience"></a>
+                <Experience />
             </ThemeProvider>
         </Fragment>
     );

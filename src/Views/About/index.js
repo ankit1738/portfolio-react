@@ -7,8 +7,8 @@ function About() {
 
     return (
         <Container maxWidth="lg" className={classes.root}>
-            <Grid container>
-                <Grid item lg={2}>
+            {/* <Grid container>
+                <Grid item lg={2} md>
                     <Typography variant="h4" className={classes.heading}>
                         About
                     </Typography>
@@ -16,13 +16,13 @@ function About() {
                 <Grid item lg={10} className={classes.headingGrid}>
                     <Divider className={classes.divider} />
                 </Grid>
-            </Grid>
+            </Grid> */}
             <Container maxWidth="lg" className={classes.contentContainer}>
                 <Grid container className={classes.aboutGrid} spacing={10}>
-                    <Grid item lg={5}>
+                    <Grid item lg={5} md={5}>
                         <img className={classes.avatar} />
                     </Grid>
-                    <Grid item lg={7}>
+                    <Grid item lg={7} md={7}>
                         <Typography variant="h3">Ankit Kumar</Typography>
                         <Typography variant="body1">
                             Javascript Full stack developer proficient in MEAN
