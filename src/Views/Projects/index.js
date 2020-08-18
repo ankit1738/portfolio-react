@@ -7,6 +7,10 @@ import {
     StyledTooltip as Tooltip,
 } from "./styles";
 import ProjectCard from "./projectCard";
+import Flip from "react-reveal/Flip";
+import Fade from "react-reveal/Fade";
+import { Link } from "react-router-dom";
+
 function Projects() {
     const classes = styles();
 
@@ -51,6 +55,9 @@ function Projects() {
                                 <ProjectCard projectName="Techathon" />
                             </Grid>
                         </Grid>
+                    </Grid>
+                    <Grid item md={10} className={classes.allProject}>
+                        <Link to="">All Projects -{">"}</Link>
                     </Grid>
                 </Grid>
             </Container>

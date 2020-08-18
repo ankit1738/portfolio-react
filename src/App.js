@@ -7,6 +7,9 @@ import Education from "./Views/Education/index";
 import Experience from "./Views/Experience/index";
 import Skills from "./Views/Skills/index";
 import Projects from "./Views/Projects/index";
+import Contact from "./Views/Contact/index";
+
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
     const theme = createMuiTheme({
@@ -17,16 +20,20 @@ function App() {
     return (
         <Fragment>
             <ThemeProvider theme={theme}>
-                <Header />
-                <About />
-                <a id="education"></a>
-                <Education />
-                <a id="experience"></a>
-                <Experience />
-                <a id="skills"></a>
-                <Skills />
-                <a id="projects"></a>
-                <Projects />
+                <BrowserRouter>
+                    <Header />
+                    <About />
+                    <a id="education"></a>
+                    <Education />
+                    <a id="experience"></a>
+                    <Experience />
+                    <a id="skills"></a>
+                    <Skills />
+                    <a id="projects"></a>
+                    <Projects />
+                    <a id="contact"></a>
+                    <Contact />
+                </BrowserRouter>
             </ThemeProvider>
         </Fragment>
     );

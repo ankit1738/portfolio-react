@@ -29,10 +29,10 @@ function Header() {
                             <Link underline="none" href="#skills">
                                 Skills
                             </Link>
-                            <Link underline="none" href="#">
+                            <Link underline="none" href="#projects">
                                 Projects
                             </Link>
-                            <Link underline="none" href="#">
+                            <Link underline="none" href="#contact">
                                 Contact
                             </Link>
                         </div>

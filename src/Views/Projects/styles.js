@@ -25,7 +25,7 @@ export const useStyles = makeStyles((theme) =>
             alignItems: "center",
         },
         contentContainer: {
-            marginTop: "20px",
+            marginTop: "55px",
             color: theme.secondary,
         },
         centerGrid: {
@@ -40,6 +40,15 @@ export const useStyles = makeStyles((theme) =>
         },
         img: {
             height: 140,
+        },
+        allProject: {
+            textAlign: "end",
+            marginTop: "25px",
+            "& a": {
+                textDecoration: "none",
+                color: theme.secondary,
+                fontSize: "25px",
+            },
         },
     })
 );
