@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Nodejs",
+        "level": 80
+    },
+    {
+        "name": "Reactjs",
+        "level": 70
+    },
+    {
+        "name": "Angular",
+        "level": 75
+    },
+    {
+        "name": "MongoDB",
+        "level": 60
+    },
+    {
+        "name": "Javascript",
+        "level": 80
+    },
+    {
+        "name": "Typescript",
+        "level": 80
+    },
+    {
+        "name": "SQL",
+        "level": 70
+    },
+    {
+        "name": "C++",
+        "level": 70
+    },
+    {
+        "name": "HTML",
+        "level": 80
+    },
+    {
+        "name": "CSS",
+        "level": 80
+    }
+]

@@ -31,30 +31,31 @@ export function TimelineComponent(props) {
                             <Grid container className={classes.centerGrid}>
                                 <Grid item lg={12}>
                                     <Typography variant="h5">
-                                        {props.name}
+                                        {props.data.name}
                                     </Typography>
                                 </Grid>
                                 <Grid item lg={12}>
                                     <Typography variant="body1">
-                                        {props.designation} · {props.type}
+                                        {props.data.designation} ·{" "}
+                                        {props.data.type}
                                     </Typography>
                                 </Grid>
                                 <Grid item lg={12}>
                                     <Typography variant="body1">
-                                        {props.startDate} - {props.endDate} · 1
-                                        Year
+                                        {props.data.startDate} -{" "}
+                                        {props.data.endDate} · 1 Year
                                     </Typography>
                                 </Grid>
                                 <Grid item lg={12} className={classes.desc}>
                                     <Typography variant="body2">
-                                        {props.desc}
+                                        {props.data.desc}
                                     </Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid item lg={3}>
                             <Typography variant="body1" align="right">
-                                {props.location}
+                                {props.data.location}
                             </Typography>
                         </Grid>
                     </Grid>

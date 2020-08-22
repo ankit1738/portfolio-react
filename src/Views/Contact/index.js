@@ -1,19 +1,18 @@
-import React, { Fragment } from "react";
-import { Container, Divider, Grid, Box, Icon, Link } from "@material-ui/core";
+import React from "react";
+import { Container, Divider, Grid, Link } from "@material-ui/core";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
-import {
-    useStyles as styles,
-    StyledTypography as Typography,
-    StyledProgress as LinearProgress,
-    StyledTooltip as Tooltip,
-} from "./styles";
+import { useStyles as styles } from "./styles";
+import { StyledTypography as Typography } from "../../styles";
 
 function Contact() {
     const classes = styles();
-
+    const backToTop = () => {
+        console.log("here");
+        window.scrollTo(0, 0);
+    };
     return (
         <Container maxWidth="lg" className={classes.root}>
             <Grid container>
@@ -53,7 +52,7 @@ function Contact() {
                 </Grid>
                 <Grid container justify="center">
                     <Grid item md={10} className={classes.backToTop}>
-                        Back to top
+                        <span onClick={backToTop}>Back to top</span>
                     </Grid>
                 </Grid>
             </Container>

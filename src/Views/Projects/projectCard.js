@@ -20,11 +20,11 @@ function ProjectCard(props) {
                 <CardMedia
                     className={classes.img}
                     component="img"
-                    image={props.img ? `${props.img}` : "angular_1.png"}
+                    image={props.img ? `${props.img}` : `/angular_1.png`}
                 />
                 <CardContent>
                     <Typography
-                        color="black"
+                        // color="black"
                         gutterBottom
                         variant="h5"
                         component="h2">

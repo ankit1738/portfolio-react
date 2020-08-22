@@ -1,6 +1,5 @@
 import { createStyles, makeStyles, styled } from "@material-ui/core/styles";
 import { Typography, LinearProgress, Tooltip } from "@material-ui/core";
-import { Timeline } from "@material-ui/lab";
 export const useStyles = makeStyles((theme) =>
     createStyles({
         root: {
@@ -23,26 +22,11 @@ export const useStyles = makeStyles((theme) =>
             marginTop: "20px",
             color: theme.secondary,
         },
-        centerGrid: {
-            display: "flex",
-            alignItems: "center",
-        },
-        contentPadding: {
-            padding: "32px 0",
-        },
         marginTop: {
             marginTop: "48px",
         },
     })
 );
-
-export const StyledTypography = styled(Typography)((props) => ({
-    color: props.theme.secondary,
-}));
-
-export const StyledTimeline = styled(Timeline)((props) => ({
-    color: props.theme.secondary,
-}));
 
 export const StyledProgress = styled(LinearProgress)((props) => ({
     height: "10px",

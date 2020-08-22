@@ -12,6 +12,7 @@ import Contact from "./Views/Contact/index";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
+    console.log(process.env);
     const theme = createMuiTheme({
         primary: "",
         secondary: "#ffffff",
@@ -22,6 +23,7 @@ function App() {
             <ThemeProvider theme={theme}>
                 <BrowserRouter>
                     <Header />
+                    <a id="about"></a>
                     <About />
                     <a id="education"></a>
                     <Education />

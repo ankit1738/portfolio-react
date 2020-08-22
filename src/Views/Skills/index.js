@@ -1,14 +1,19 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Container, Divider, Grid, Box } from "@material-ui/core";
 import {
     useStyles as styles,
-    StyledTypography as Typography,
     StyledProgress as LinearProgress,
     StyledTooltip as Tooltip,
 } from "./styles";
+import { StyledTypography as Typography } from "../../styles";
+import skillsData from "../../static/data/skills.json";
 
 function Skills() {
     const classes = styles();
+    // const length = skills.length / 2;
+    // let skillSet1 = skills.splice(0, length);
+    // let skillSet2 = skills.splice(-length);
+    // console.log(skillsData);
 
     return (
         <Container maxWidth="lg" className={classes.root}>
@@ -25,37 +30,48 @@ function Skills() {
             <Container maxWidth="lg" className={classes.contentContainer}>
                 <Grid container justify="center" spacing={10}>
                     <Grid item lg={5} md={5}>
-                        <Box className={classes.marginTop}>
-                            <Typography variant="h6">Nodejs</Typography>
-                            <Tooltip arrow title="75%" placement="top-end">
-                                <LinearProgress
-                                    variant="determinate"
-                                    value={75}
-                                />
-                            </Tooltip>
-                        </Box>
-                        <Box className={classes.marginTop}>
-                            <Typography variant="h6">Reactjs</Typography>
-                            <LinearProgress variant="determinate" value={75} />
-                        </Box>
-                        <Box className={classes.marginTop}>
-                            <Typography variant="h6">Angular 2+</Typography>
-                            <LinearProgress variant="determinate" value={75} />
-                        </Box>
+                        {skillsData
+                            .slice(0, skillsData.length / 2)
+                            .map((data) => {
+                                return (
+                                    <Box className={classes.marginTop}>
+                                        <Typography variant="h6">
+                                            {data.name}
+                                        </Typography>
+                                        <Tooltip
+                                            arrow
+                                            title={data.level}
+                                            placement="top-end">
+                                            <LinearProgress
+                                                variant="determinate"
+                                                value={data.level}
+                                            />
+                                        </Tooltip>
+                                    </Box>
+                                );
+                            })}
                     </Grid>
                     <Grid item lg={5} md={5}>
-                        <Box className={classes.marginTop}>
-                            <Typography variant="h6">Javascript</Typography>
-                            <LinearProgress variant="determinate" value={75} />
-                        </Box>
-                        <Box className={classes.marginTop}>
-                            <Typography variant="h6">MongoDB</Typography>
-                            <LinearProgress variant="determinate" value={75} />
-                        </Box>
-                        <Box className={classes.marginTop}>
-                            <Typography variant="h6">C++</Typography>
-                            <LinearProgress variant="determinate" value={75} />
-                        </Box>
+                        {skillsData
+                            .slice(-skillsData.length / 2)
+                            .map((data) => {
+                                return (
+                                    <Box className={classes.marginTop}>
+                                        <Typography variant="h6">
+                                            {data.name}
+                                        </Typography>
+                                        <Tooltip
+                                            arrow
+                                            title={data.level}
+                                            placement="top-end">
+                                            <LinearProgress
+                                                variant="determinate"
+                                                value={data.level}
+                                            />
+                                        </Tooltip>
+                                    </Box>
+                                );
+                            })}
                     </Grid>
                 </Grid>
             </Container>

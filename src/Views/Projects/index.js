@@ -1,15 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Container, Divider, Grid } from "@material-ui/core";
-import {
-    useStyles as styles,
-    StyledTypography as Typography,
-    StyledProgress as LinearProgress,
-    StyledTooltip as Tooltip,
-} from "./styles";
+import { useStyles as styles } from "./styles";
 import ProjectCard from "./projectCard";
 import Flip from "react-reveal/Flip";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
+import { StyledTypography as Typography } from "../../styles";
 
 function Projects() {
     const classes = styles();

@@ -12,7 +12,6 @@ import { Grid, Typography } from "@material-ui/core";
 
 export function TimelineComponent(props) {
     const classes = styles();
-
     return (
         <Fragment>
             <TimelineItem>
@@ -31,27 +30,29 @@ export function TimelineComponent(props) {
                             <Grid container className={classes.centerGrid}>
                                 <Grid item lg={12}>
                                     <Typography variant="h5">
-                                        {props.name}
+                                        {props.data.name}
                                     </Typography>
                                 </Grid>
                                 <Grid item lg={12}>
                                     <Typography variant="body1">
-                                        {props.degree} , {props.course}
+                                        {props.data.degree} ,{" "}
+                                        {props.data.course}
                                     </Typography>
                                 </Grid>
                                 <Grid item lg={12}>
                                     <Typography variant="body1">
-                                        Grade: {props.grade} {props.gradePoint}
+                                        Grade: {props.data.grade}{" "}
+                                        {props.data.gradePoint}
                                     </Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid item lg={3}>
                             <Typography variant="body1" align="right">
-                                {props.startDate} - {props.endDate}
+                                {props.data.startDate} - {props.data.endDate}
                             </Typography>
                             <Typography variant="body1" align="right">
-                                {props.location}
+                                {props.data.location}
                             </Typography>
                         </Grid>
                     </Grid>

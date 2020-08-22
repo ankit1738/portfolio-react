@@ -1,5 +1,4 @@
 import { createStyles, makeStyles, styled } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) =>
     createStyles({
@@ -33,14 +32,11 @@ export const useStyles = makeStyles((theme) =>
             },
         },
         avatar: {
-            width: "300px",
+            objectFit: "cover",
+            width: "280px",
             height: "300px",
-            borderRadius: "50%",
-            border: "1px solid white",
+            borderRadius: "4%",
+            // border: "1px solid white",
         },
     })
 );
-
-export const StyledTypography = styled(Typography)((props) => ({
-    color: props.theme.secondary,
-}));
