@@ -20,13 +20,10 @@ function About() {
             </Grid> */}
             <Container maxWidth="lg" className={classes.contentContainer}>
                 <Grid container className={classes.aboutGrid} spacing={10}>
-                    <Grid item lg={5} md={5}>
-                        <img
-                            className={classes.avatar}
-                            src="profile_pic2.jpg"
-                        />
+                    <Grid item sm={5} xs={12} className={classes.avatarGrid}>
+                        <img className={classes.avatar} src="pic22.png" />
                     </Grid>
-                    <Grid item lg={7} md={7}>
+                    <Grid item sm={7} xs={12} className={classes.aboutContent}>
                         <Typography variant="h5">Hi, I'm</Typography>
                         <Typography variant="h3">Ankit Kumar</Typography>
                         <Typography variant="body1">

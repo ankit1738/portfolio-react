@@ -12,7 +12,14 @@ import Contact from "./Views/Contact/index";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
-    console.log(process.env);
+    React.useEffect(() => {
+        window.addEventListener("resize", resize);
+        return () => window.removeEventListener("resize", resize);
+    });
+
+    const resize = () => {
+        console.log(window.innerWidth);
+    };
     const theme = createMuiTheme({
         primary: "",
         secondary: "#ffffff",

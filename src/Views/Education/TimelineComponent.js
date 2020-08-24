@@ -26,7 +26,7 @@ export function TimelineComponent(props) {
                 </TimelineSeparator>
                 <TimelineContent>
                     <Grid container className={classes.contentPadding}>
-                        <Grid item lg={9}>
+                        <Grid item lg={9} xs={12}>
                             <Grid container className={classes.centerGrid}>
                                 <Grid item lg={12}>
                                     <Typography variant="h5">
@@ -47,7 +47,7 @@ export function TimelineComponent(props) {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item lg={3}>
+                        <Grid item lg={3} xs={12}>
                             <Typography variant="body1" align="right">
                                 {props.data.startDate} - {props.data.endDate}
                             </Typography>

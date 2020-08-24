@@ -3,7 +3,7 @@ import { createStyles, makeStyles, styled } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme) =>
     createStyles({
         root: {
-            marginTop: "100px",
+            // marginTop: "100px",
             height: "calc(100vh - 100px)",
         },
         heading: {
@@ -33,10 +33,20 @@ export const useStyles = makeStyles((theme) =>
         },
         avatar: {
             objectFit: "cover",
-            width: "280px",
-            height: "300px",
+            width: "370px",
+            height: "400px",
             borderRadius: "4%",
             // border: "1px solid white",
+            [theme.breakpoints.down(600)]: {
+                width: "280px",
+                height: "300px",
+                margin: "0 auto",
+            },
+        },
+        aboutContent: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
         },
     })
 );
