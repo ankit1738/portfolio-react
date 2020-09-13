@@ -8,7 +8,7 @@ import {
     TimelineOppositeContent,
 } from "@material-ui/lab";
 import { useStyles as styles } from "./styles";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Button } from "@material-ui/core";
 
 export function TimelineComponent(props) {
     const classes = styles();
@@ -35,8 +35,10 @@ export function TimelineComponent(props) {
                                 </Grid>
                                 <Grid item lg={12}>
                                     <Typography variant="body1">
-                                        {props.data.degree} ,{" "}
-                                        {props.data.course}
+                                        {props.data.degree}
+                                        {props.data.course
+                                            ? ", " + props.data.course
+                                            : null}
                                     </Typography>
                                 </Grid>
                                 <Grid item lg={12}>
@@ -44,6 +46,19 @@ export function TimelineComponent(props) {
                                         Grade: {props.data.grade}{" "}
                                         {props.data.gradePoint}
                                     </Typography>
+                                </Grid>
+                                <Grid item lg={12}>
+                                    {props.role === "admin" ? (
+                                        <Button
+                                            size="small"
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={() =>
+                                                props.edit(props.id)
+                                            }>
+                                            Edit
+                                        </Button>
+                                    ) : null}
                                 </Grid>
                             </Grid>
                         </Grid>

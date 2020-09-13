@@ -1,14 +1,62 @@
-import React from "react";
-import { Container, Divider, Grid } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Container, Divider, Grid, Button } from "@material-ui/core";
 import { useStyles as styles } from "./styles";
 import {
     StyledTypography as Typography,
     StyledTimeline as Timeline,
 } from "../../styles";
 import { TimelineComponent, TimelineLastComponent } from "./TimelineComponent";
-import experienceData from "../../static/data/experience.json";
+import EditModal from "./editModal";
+import AddModal from "./addModal";
+import firebase from "../../firebase";
+// import experienceData from "../../static/data/experience.json";
+
 function Experience() {
     const classes = styles();
+    const [experienceData, setExperienceData] = useState([]);
+    const [editData, setEditData] = useState();
+    const [openEditModal, setOpenEditModal] = useState(false);
+    const [openAddModal, setOpenAddModal] = useState(false);
+    const [reload, setReload] = useState(true);
+
+    useEffect(() => {
+        console.log("REnder");
+        let data = [];
+        firebase.db
+            .collection("Experience")
+            .orderBy("startDate", "desc")
+            .get()
+            .then(async (querySnapshot) => {
+                await querySnapshot.docs.forEach((doc) => {
+                    data.push({ id: doc.id, data: doc.data() });
+                });
+                setExperienceData(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, [reload]);
+
+    const edit = (id) => {
+        console.log(id);
+        setEditData(experienceData.find((item) => item.id === id));
+        setOpenEditModal(true);
+    };
+
+    const handleCloseEditModal = (id) => {
+        setOpenEditModal(false);
+        setReload((prev) => !prev);
+    };
+
+    const handleOpenAddModal = (id) => {
+        setOpenAddModal(true);
+    };
+
+    const handleCloseAddModal = (id) => {
+        setOpenAddModal(false);
+        setReload((prev) => !prev);
+    };
+
     return (
         <Container maxWidth="lg" className={classes.root}>
             <Grid container>
@@ -16,6 +64,13 @@ function Experience() {
                     <Typography variant="h4" className={classes.heading}>
                         Experience
                     </Typography>
+                    <Button
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        onClick={handleOpenAddModal}>
+                        Add Experience
+                    </Button>
                 </Grid>
                 <Grid item md={10} className={classes.contentContainer}>
                     <Divider className={classes.divider} />
@@ -25,14 +80,28 @@ function Experience() {
                 <Grid container justify="center">
                     <Grid item md={10}>
                         <Timeline>
-                            {experienceData.map((value) => {
-                                return <TimelineComponent data={value} />;
+                            {experienceData.map((doc, index) => {
+                                return (
+                                    <TimelineComponent
+                                        data={doc.data}
+                                        key={index}
+                                        id={doc.id}
+                                        edit={edit}
+                                    />
+                                );
                             })}
                             <TimelineLastComponent />
                         </Timeline>
                     </Grid>
                 </Grid>
             </Container>
+            <EditModal
+                open={openEditModal}
+                handleClose={handleCloseEditModal}
+                data={editData}
+                // setEducationData={setEducationData}
+            />
+            <AddModal open={openAddModal} handleClose={handleCloseAddModal} />
         </Container>
     );
 }

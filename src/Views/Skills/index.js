@@ -32,9 +32,11 @@ function Skills() {
                     <Grid item lg={5} md={5}>
                         {skillsData
                             .slice(0, skillsData.length / 2)
-                            .map((data) => {
+                            .map((data, index) => {
                                 return (
-                                    <Box className={classes.marginTop}>
+                                    <Box
+                                        className={classes.marginTop}
+                                        key={index}>
                                         <Typography variant="h6">
                                             {data.name}
                                         </Typography>
@@ -54,9 +56,11 @@ function Skills() {
                     <Grid item lg={5} md={5}>
                         {skillsData
                             .slice(-skillsData.length / 2)
-                            .map((data) => {
+                            .map((data, index) => {
                                 return (
-                                    <Box className={classes.marginTop}>
+                                    <Box
+                                        className={classes.marginTop}
+                                        key={index}>
                                         <Typography variant="h6">
                                             {data.name}
                                         </Typography>

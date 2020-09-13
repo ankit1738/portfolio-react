@@ -8,7 +8,7 @@ import {
     TimelineOppositeContent,
 } from "@material-ui/lab";
 import { useStyles as styles } from "./styles";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Button } from "@material-ui/core";
 
 export function TimelineComponent(props) {
     const classes = styles();
@@ -65,6 +65,15 @@ export function TimelineComponent(props) {
                                     <Typography variant="body2">
                                         {props.data.desc}
                                     </Typography>
+                                </Grid>
+                                <Grid item lg={12}>
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={() => props.edit(props.id)}>
+                                        Edit
+                                    </Button>
                                 </Grid>
                             </Grid>
                         </Grid>

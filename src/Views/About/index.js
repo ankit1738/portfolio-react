@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Grid } from "@material-ui/core";
 import { useStyles as styles } from "./styles";
 import { StyledTypography as Typography } from "../../styles";
+import firebase from "../../firebase";
 
 function About() {
     const classes = styles();
-
+    const [aboutData, setAboutData] = useState([]);
+    useEffect(() => {
+        firebase.db
+            .collection("About")
+            .doc("8hv6MRWHNgm7quA34GBq")
+            .get()
+            .then(async (querySnapshot) => {
+                setAboutData(querySnapshot.data());
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
     return (
         <Container maxWidth="lg" className={classes.root}>
             {/* <Grid container>
@@ -25,11 +38,9 @@ function About() {
                     </Grid>
                     <Grid item sm={7} xs={12} className={classes.aboutContent}>
                         <Typography variant="h5">Hi, I'm</Typography>
-                        <Typography variant="h3">Ankit Kumar</Typography>
+                        <Typography variant="h3">{aboutData.name}</Typography>
                         <Typography variant="body1">
-                            Javascript Full stack developer proficient in MEAN
-                            and MERN stack developement. Experienced in
-                            end-to-end developement phase of an application.
+                            {aboutData.about}
                         </Typography>
                         <Typography variant="body1"> </Typography>
                     </Grid>

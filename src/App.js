@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, createContext, useState } from "react";
 import "./App.css";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import Header from "./Views/Header/index";
@@ -10,39 +10,57 @@ import Projects from "./Views/Projects/index";
 import Contact from "./Views/Contact/index";
 
 import { BrowserRouter } from "react-router-dom";
+import firebase from "./firebase";
+import { RoleContext } from "./RoleContext";
 
 function App() {
-    React.useEffect(() => {
-        window.addEventListener("resize", resize);
-        return () => window.removeEventListener("resize", resize);
-    });
+    // React.useEffect(() => {
+    //     window.addEventListener("resize", resize);
+    //     return () => window.removeEventListener("resize", resize);
+    // });
 
-    const resize = () => {
-        console.log(window.innerWidth);
-    };
+    // const resize = () => {
+    //     console.log(window.innerWidth);
+    // };
+    // console.log("FIrebase");
+    // firebase.db
+    //     .collection("About")
+    //     .get()
+    //     .then((querySnapshot) => {
+    //         querySnapshot.forEach((doc) => {
+    //             console.log(doc.data() + " " + doc.id);
+    //         });
+    //     })
+    //     .catch((err) => {
+    //         console.log(err.message);
+    //     });
     const theme = createMuiTheme({
         primary: "",
         secondary: "#ffffff",
         background: "#18242b",
     });
+    const [role, setRole] = useState("admin");
+
     return (
         <Fragment>
             <ThemeProvider theme={theme}>
-                <BrowserRouter>
-                    <Header />
-                    <a id="about"></a>
-                    <About />
-                    <a id="education"></a>
-                    <Education />
-                    <a id="experience"></a>
-                    <Experience />
-                    <a id="skills"></a>
-                    <Skills />
-                    <a id="projects"></a>
-                    <Projects />
-                    <a id="contact"></a>
-                    <Contact />
-                </BrowserRouter>
+                <RoleContext.Provider value={{ role: role, setRole: setRole }}>
+                    <BrowserRouter>
+                        <Header />
+                        <a id="about"></a>
+                        <About />
+                        <a id="education"></a>
+                        <Education />
+                        <a id="experience"></a>
+                        <Experience />
+                        <a id="skills"></a>
+                        <Skills />
+                        <a id="projects"></a>
+                        <Projects />
+                        <a id="contact"></a>
+                        <Contact />
+                    </BrowserRouter>
+                </RoleContext.Provider>
             </ThemeProvider>
         </Fragment>
     );
