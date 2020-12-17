@@ -67,13 +67,27 @@ export function TimelineComponent(props) {
                                     </Typography>
                                 </Grid>
                                 <Grid item lg={12}>
-                                    <Button
-                                        size="small"
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={() => props.edit(props.id)}>
-                                        Edit
-                                    </Button>
+                                    <>
+                                        <Button
+                                            size="small"
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={() =>
+                                                props.edit(props.id)
+                                            }>
+                                            Edit
+                                        </Button>
+                                        <Button
+                                            className={classes.leftMargin}
+                                            size="small"
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={() =>
+                                                props.handleDelete(props.id)
+                                            }>
+                                            Delete
+                                        </Button>
+                                    </>
                                 </Grid>
                             </Grid>
                         </Grid>

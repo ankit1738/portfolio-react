@@ -9,6 +9,7 @@ import { TimelineComponent, TimelineLastComponent } from "./TimelineComponent";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
 import firebase from "../../firebase";
+import moment from "moment";
 // import experienceData from "../../static/data/experience.json";
 
 function Experience() {
@@ -24,11 +25,16 @@ function Experience() {
         let data = [];
         firebase.db
             .collection("Experience")
-            .orderBy("startDate", "desc")
             .get()
             .then(async (querySnapshot) => {
                 await querySnapshot.docs.forEach((doc) => {
                     data.push({ id: doc.id, data: doc.data() });
+                });
+                data.sort((x, y) => {
+                    return moment(y.data.startDate).diff(
+                        moment(x.data.startDate),
+                        "days"
+                    );
                 });
                 setExperienceData(data);
             })
@@ -57,6 +63,18 @@ function Experience() {
         setReload((prev) => !prev);
     };
 
+    const handleDelete = (id) => {
+        if (window.confirm("Do you want to delete this record?")) {
+            firebase.db
+                .collection("Experience")
+                .doc(id)
+                .delete()
+                .then(() => {
+                    setReload((prev) => !prev);
+                })
+                .catch((error) => console.log(error));
+        }
+    };
     return (
         <Container maxWidth="lg" className={classes.root}>
             <Grid container>
@@ -87,6 +105,7 @@ function Experience() {
                                         key={index}
                                         id={doc.id}
                                         edit={edit}
+                                        handleDelete={handleDelete}
                                     />
                                 );
                             })}

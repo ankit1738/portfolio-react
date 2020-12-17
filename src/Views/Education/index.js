@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Container, Divider, Grid } from "@material-ui/core";
+import { Container, Divider, Grid, Button } from "@material-ui/core";
 import { useStyles as styles } from "./styles";
 import { TimelineComponent, TimelineLastComponent } from "./TimelineComponent";
 import {
@@ -9,6 +9,8 @@ import {
 import EditModal from "./editModal";
 import firebase from "../../firebase";
 import { RoleContext } from "../../RoleContext";
+import AddModal from "./addModal";
+
 // import educationData from "../../static/data/education.json";
 
 function About() {
@@ -16,7 +18,10 @@ function About() {
     const classes = styles();
     const [educationData, setEducationData] = useState([]);
     const [editData, setEditData] = useState();
-    const [open, setOpen] = useState(false);
+    const [addData, setAddData] = useState();
+    const [openEditModal, setOpenEditModal] = useState(false);
+    const [openAddModal, setOpenAddModal] = useState(false);
+
     const [reload, setReload] = useState(true);
 
     useEffect(() => {
@@ -36,15 +41,37 @@ function About() {
             });
     }, [reload]);
 
-    const edit = (id) => {
+    const handleOpenEditModal = (id) => {
         // console.log(id);
         setEditData(educationData.find((item) => item.id === id));
-        setOpen(true);
+        setOpenEditModal(true);
     };
 
-    const handleClose = (id) => {
-        setOpen(false);
+    const handleOpenAddModal = () => {
+        setOpenAddModal(true);
+    };
+
+    const handleCloseEditModal = (id) => {
+        setOpenEditModal(false);
         setReload((prev) => !prev);
+    };
+
+    const handleCloseAddModal = (id) => {
+        setOpenAddModal(false);
+        setReload((prev) => !prev);
+    };
+
+    const handleDelete = (id) => {
+        if (window.confirm("Do you want to delete this record?")) {
+            firebase.db
+                .collection("Education")
+                .doc(id)
+                .delete()
+                .then(() => {
+                    setReload((prev) => !prev);
+                })
+                .catch((error) => console.log(error));
+        }
     };
 
     return (
@@ -54,6 +81,13 @@ function About() {
                     <Typography variant="h4" className={classes.heading}>
                         Education
                     </Typography>
+                    <Button
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        onClick={handleOpenAddModal}>
+                        Add Education
+                    </Button>
                 </Grid>
                 <Grid item lg={10} className={classes.headingGrid}>
                     <Divider className={classes.divider} />
@@ -69,7 +103,10 @@ function About() {
                                         data={doc.data}
                                         key={index}
                                         id={doc.id}
-                                        edit={edit}
+                                        handleOpenEditModal={
+                                            handleOpenEditModal
+                                        }
+                                        handleDelete={handleDelete}
                                         role={role}
                                     />
                                 );
@@ -80,10 +117,15 @@ function About() {
                 </Grid>
             </Container>
             <EditModal
-                open={open}
-                handleClose={handleClose}
+                openEditModal={openEditModal}
+                handleCloseEditModal={handleCloseEditModal}
                 data={editData}
                 // setEducationData={setEducationData}
+            />
+            <AddModal
+                openAddModal={openAddModal}
+                handleCloseAddModal={handleCloseAddModal}
+                data={addData}
             />
         </Container>
     );

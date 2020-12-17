@@ -10,10 +10,11 @@ function About() {
     useEffect(() => {
         firebase.db
             .collection("About")
-            .doc("8hv6MRWHNgm7quA34GBq")
             .get()
             .then(async (querySnapshot) => {
-                setAboutData(querySnapshot.data());
+                await querySnapshot.docs.forEach((doc) => {
+                    setAboutData(doc.data());
+                });
             })
             .catch((err) => {
                 console.log(err.message);

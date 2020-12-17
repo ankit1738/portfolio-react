@@ -5,26 +5,26 @@ import { Button, LinearProgress, Modal } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
 import firebase from "../../firebase";
 
-function EditModal({ openEditModal, handleCloseEditModal, data }) {
+function AddModal({ openAddModal, handleCloseAddModal, data }) {
     const classes = styles();
     return (
         <Modal
-            open={openEditModal}
-            onClose={handleCloseEditModal}
+            open={openAddModal}
+            onClose={handleCloseAddModal}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description">
             <div className={classes.paper}>
                 <h3>Edit: </h3>
                 <Formik
                     initialValues={{
-                        name: data?.data.name,
-                        degree: data?.data.degree,
-                        course: data?.data.course,
-                        grade: data?.data.grade,
-                        gradePoint: data?.data.gradePoint,
-                        startDate: data?.data.startDate,
-                        endDate: data?.data.endDate,
-                        location: data?.data.location,
+                        name: "",
+                        degree: "",
+                        course: "",
+                        grade: "",
+                        gradePoint: "",
+                        startDate: "",
+                        endDate: "",
+                        location: "",
                     }}
                     validate={(values) => {
                         const errors = {};
@@ -52,16 +52,13 @@ function EditModal({ openEditModal, handleCloseEditModal, data }) {
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        setTimeout(() => {
-                            console.log(values);
-                        }, 500);
                         firebase.db
                             .collection("Education")
-                            .doc(data.id)
-                            .update(values)
-                            .then(() => {
+                            .add(values)
+                            .then((doc) => {
+                                // console.log(doc);
                                 setSubmitting(false);
-                                handleCloseEditModal();
+                                handleCloseAddModal();
                             })
                             .catch((error) => console.log(error));
                     }}>
@@ -147,4 +144,4 @@ function EditModal({ openEditModal, handleCloseEditModal, data }) {
     );
 }
 
-export default EditModal;
+export default AddModal;

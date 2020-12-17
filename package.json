@@ -12,6 +12,7 @@
     "firebase": "^7.20.0",
     "formik": "^2.1.5",
     "formik-material-ui": "^3.0.0",
+    "moment": "^2.29.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-reveal": "^1.2.2",

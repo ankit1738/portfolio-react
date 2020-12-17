@@ -38,5 +38,8 @@ export const useStyles = makeStyles((theme) =>
             left: `50%`,
             transform: `translate(-50%, -50%)`,
         },
+        leftMargin: {
+            marginLeft: "16px",
+        },
     })
 );

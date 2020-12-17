@@ -5,12 +5,12 @@ import { Button, LinearProgress, Modal } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
 import firebase from "../../firebase";
 
-function EditModal({ openEditModal, handleCloseEditModal, data }) {
+function EditModal({ open, handleClose, data }) {
     const classes = styles();
     return (
         <Modal
-            open={openEditModal}
-            onClose={handleCloseEditModal}
+            open={open}
+            onClose={handleClose}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description">
             <div className={classes.paper}>
@@ -18,10 +18,9 @@ function EditModal({ openEditModal, handleCloseEditModal, data }) {
                 <Formik
                     initialValues={{
                         name: data?.data.name,
-                        degree: data?.data.degree,
-                        course: data?.data.course,
-                        grade: data?.data.grade,
-                        gradePoint: data?.data.gradePoint,
+                        desc: data?.data.desc,
+                        designation: data?.data.designation,
+                        type: data?.data.type,
                         startDate: data?.data.startDate,
                         endDate: data?.data.endDate,
                         location: data?.data.location,
@@ -31,14 +30,8 @@ function EditModal({ openEditModal, handleCloseEditModal, data }) {
                         if (!values.name) {
                             errors.name = "Required";
                         }
-                        if (!values.degree) {
-                            errors.degree = "Required";
-                        }
-                        if (!values.grade) {
-                            errors.grade = "Required";
-                        }
-                        if (!values.gradePoint) {
-                            errors.gradePoint = "Required";
+                        if (!values.desc) {
+                            errors.desc = "Required";
                         }
                         if (!values.startDate) {
                             errors.startDate = "Required";
@@ -52,16 +45,17 @@ function EditModal({ openEditModal, handleCloseEditModal, data }) {
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        setTimeout(() => {
-                            console.log(values);
-                        }, 500);
+                        console.log(data.id);
+                        // setTimeout(() => {
+                        //     console.log(values);
+                        // }, 500);
                         firebase.db
-                            .collection("Education")
+                            .collection("Experience")
                             .doc(data.id)
                             .update(values)
                             .then(() => {
                                 setSubmitting(false);
-                                handleCloseEditModal();
+                                handleClose();
                             })
                             .catch((error) => console.log(error));
                     }}>
@@ -77,33 +71,27 @@ function EditModal({ openEditModal, handleCloseEditModal, data }) {
                             <br />
                             <Field
                                 component={TextField}
-                                type="degree"
-                                name="degree"
-                                label="Degree"
+                                type="desc"
+                                name="desc"
+                                label="Description"
+                                fullWidth
+                                multiline
+                                rows={4}
+                            />
+                            <br />
+                            <Field
+                                component={TextField}
+                                type="type"
+                                name="type"
+                                label="Type"
                                 fullWidth
                             />
                             <br />
                             <Field
                                 component={TextField}
-                                type="course"
-                                name="course"
-                                label="Course"
-                                fullWidth
-                            />
-                            <br />
-                            <Field
-                                component={TextField}
-                                type="grade"
-                                name="grade"
-                                label="Grade"
-                                fullWidth
-                            />
-                            <br />
-                            <Field
-                                component={TextField}
-                                type="gradePoint"
-                                name="gradePoint"
-                                label="Grade Point"
+                                type="designation"
+                                name="designation"
+                                label="Designation"
                                 fullWidth
                             />
                             <br />
