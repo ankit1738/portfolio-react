@@ -43,7 +43,8 @@ export const useStyles = makeStyles((theme) =>
 );
 
 export const StyledProgress = styled(LinearProgress)((props) => ({
-    height: "10px",
+    background: "#ffffff",
+    height: "14px",
     borderRadius: "4px",
     "& div": {
         background: "#5ab884",

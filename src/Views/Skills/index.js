@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Divider, Grid, Box, Button } from "@material-ui/core";
 import {
     useStyles as styles,
@@ -6,13 +6,14 @@ import {
     StyledTooltip as Tooltip,
 } from "./styles";
 import { StyledTypography as Typography } from "../../styles";
-import skillsData from "../../static/data/skills.json";
+// import skillsData from "../../static/data/skills.json";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
+import firebase from "../../firebase";
 
-function Skills(props) {
+function Skills() {
     const classes = styles();
-    const [skillData, setSkillData] = useState([]);
+    const [skillsData, setSkillsData] = useState([]);
     const [editData, setEditData] = useState();
     const [openEditModal, setOpenEditModal] = useState(false);
     const [openAddModal, setOpenAddModal] = useState(false);
@@ -31,6 +32,42 @@ function Skills(props) {
         setOpenAddModal(false);
         setReload((prev) => !prev);
     };
+
+    const edit = (id) => {
+        console.log(id);
+        setEditData(skillsData.find((item) => item.id === id));
+        setOpenEditModal(true);
+    };
+
+    const handleDelete = (id) => {
+        if (window.confirm("Do you want to delete this record?")) {
+            firebase.db
+                .collection("Skills")
+                .doc(id)
+                .delete()
+                .then(() => {
+                    setReload((prev) => !prev);
+                })
+                .catch((error) => console.log(error));
+        }
+    };
+    useEffect(() => {
+        console.log("REnder");
+        let data = [];
+        firebase.db
+            .collection("Skills")
+            .get()
+            .then(async (querySnapshot) => {
+                await querySnapshot.docs.forEach((doc) => {
+                    data.push({ id: doc.id, data: doc.data() });
+                });
+                console.log(data);
+                setSkillsData(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, [reload]);
 
     return (
         <Container maxWidth="lg" className={classes.root}>
@@ -55,22 +92,22 @@ function Skills(props) {
                 <Grid container justify="center" spacing={10}>
                     <Grid item lg={5} md={5}>
                         {skillsData
-                            .slice(0, skillsData.length / 2)
+                            .slice(0, Math.ceil(skillsData.length / 2))
                             .map((data, index) => {
                                 return (
                                     <Box
                                         className={classes.marginTop}
                                         key={index}>
                                         <Typography variant="h6">
-                                            {data.name}
+                                            {data.data.name}
                                         </Typography>
                                         <Tooltip
                                             arrow
-                                            title={data.level}
+                                            title={data.data.level}
                                             placement="top-end">
                                             <LinearProgress
                                                 variant="determinate"
-                                                value={data.level}
+                                                value={data.data.level}
                                             />
                                         </Tooltip>
                                         <Grid item lg={12}>
@@ -80,7 +117,7 @@ function Skills(props) {
                                                     variant="contained"
                                                     color="primary"
                                                     onClick={() =>
-                                                        props.edit(props.id)
+                                                        edit(data.id)
                                                     }>
                                                     Edit
                                                 </Button>
@@ -92,9 +129,7 @@ function Skills(props) {
                                                     variant="contained"
                                                     color="secondary"
                                                     onClick={() =>
-                                                        props.handleDelete(
-                                                            props.id
-                                                        )
+                                                        handleDelete(data.id)
                                                     }>
                                                     Delete
                                                 </Button>
@@ -106,22 +141,22 @@ function Skills(props) {
                     </Grid>
                     <Grid item lg={5} md={5}>
                         {skillsData
-                            .slice(-skillsData.length / 2)
+                            .slice(-Math.floor(skillsData.length / 2))
                             .map((data, index) => {
                                 return (
                                     <Box
                                         className={classes.marginTop}
                                         key={index}>
                                         <Typography variant="h6">
-                                            {data.name}
+                                            {data.data.name}
                                         </Typography>
                                         <Tooltip
                                             arrow
-                                            title={data.level}
+                                            title={data.data.level}
                                             placement="top-end">
                                             <LinearProgress
                                                 variant="determinate"
-                                                value={data.level}
+                                                value={data.data.level}
                                             />
                                         </Tooltip>
                                         <Grid item lg={12}>
@@ -131,7 +166,7 @@ function Skills(props) {
                                                     variant="contained"
                                                     color="primary"
                                                     onClick={() =>
-                                                        props.edit(props.id)
+                                                        edit(data.id)
                                                     }>
                                                     Edit
                                                 </Button>
@@ -143,9 +178,7 @@ function Skills(props) {
                                                     variant="contained"
                                                     color="secondary"
                                                     onClick={() =>
-                                                        props.handleDelete(
-                                                            props.id
-                                                        )
+                                                        handleDelete(data.id)
                                                     }>
                                                     Delete
                                                 </Button>

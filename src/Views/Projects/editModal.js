@@ -18,15 +18,29 @@ function EditModal({ open, handleClose, data }) {
                 <Formik
                     initialValues={{
                         name: data?.data.name,
-                        level: data?.data.level,
+                        desc: data?.data.desc,
+                        designation: data?.data.designation,
+                        type: data?.data.type,
+                        startDate: data?.data.startDate,
+                        endDate: data?.data.endDate,
+                        location: data?.data.location,
                     }}
                     validate={(values) => {
                         const errors = {};
                         if (!values.name) {
                             errors.name = "Required";
                         }
-                        if (!values.level) {
-                            errors.level = "Required";
+                        if (!values.desc) {
+                            errors.desc = "Required";
+                        }
+                        if (!values.startDate) {
+                            errors.startDate = "Required";
+                        }
+                        if (!values.endDate) {
+                            errors.endDate = "Required";
+                        }
+                        if (!values.location) {
+                            errors.location = "Required";
                         }
                         return errors;
                     }}
@@ -36,7 +50,7 @@ function EditModal({ open, handleClose, data }) {
                         //     console.log(values);
                         // }, 500);
                         firebase.db
-                            .collection("Skills")
+                            .collection("Experience")
                             .doc(data.id)
                             .update(values)
                             .then(() => {
@@ -57,9 +71,51 @@ function EditModal({ open, handleClose, data }) {
                             <br />
                             <Field
                                 component={TextField}
-                                name="level"
-                                type="level"
-                                label="Level"
+                                type="desc"
+                                name="desc"
+                                label="Description"
+                                fullWidth
+                                multiline
+                                rows={4}
+                            />
+                            <br />
+                            <Field
+                                component={TextField}
+                                type="type"
+                                name="type"
+                                label="Type"
+                                fullWidth
+                            />
+                            <br />
+                            <Field
+                                component={TextField}
+                                type="designation"
+                                name="designation"
+                                label="Designation"
+                                fullWidth
+                            />
+                            <br />
+                            <Field
+                                component={TextField}
+                                type="startDate"
+                                name="startDate"
+                                label="Start Date"
+                                fullWidth
+                            />
+                            <br />
+                            <Field
+                                component={TextField}
+                                type="endDate"
+                                name="endDate"
+                                label="End Date"
+                                fullWidth
+                            />
+                            <br />
+                            <Field
+                                component={TextField}
+                                type="location"
+                                name="location"
+                                label="Location"
                                 fullWidth
                             />
                             <br />

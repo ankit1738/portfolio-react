@@ -13,8 +13,10 @@ firebase.initializeApp({
 });
 
 let db = firebase.firestore();
+let storage = firebase.storage();
 
 export default {
     firebase,
+    storage,
     db,
 };

@@ -10,7 +10,6 @@ import EditModal from "./editModal";
 import AddModal from "./addModal";
 import firebase from "../../firebase";
 import moment from "moment";
-// import experienceData from "../../static/data/experience.json";
 
 function Experience() {
     const classes = styles();

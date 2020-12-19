@@ -25,6 +25,7 @@ function ProjectCard(props) {
                 <CardContent>
                     <Typography
                         // color="black"
+                        className={classes.centre}
                         gutterBottom
                         variant="h5"
                         component="h2">
