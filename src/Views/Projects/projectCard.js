@@ -29,7 +29,7 @@ function ProjectCard(props) {
                         gutterBottom
                         variant="h5"
                         component="h2">
-                        {props.projectName}
+                        {props.projectTitle}
                     </Typography>
                 </CardContent>
             </CardActionArea>

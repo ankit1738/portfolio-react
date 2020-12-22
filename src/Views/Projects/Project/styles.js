@@ -30,22 +30,17 @@ export const useStyles = makeStyles((theme) =>
                 alignItems: "center",
             },
         },
-        avatar: {
-            objectFit: "cover",
-            width: "370px",
-            height: "400px",
-            borderRadius: "4%",
-            // border: "1px solid white",
-            [theme.breakpoints.down(600)]: {
-                width: "280px",
-                height: "300px",
-                margin: "0 auto",
+        // input: {},
+        form: {
+            "& >div": {
+                margin: "24px 0px",
+                borderBottom: "1px solid white",
+                "& label, div": {
+                    color: "#ffffff",
+                },
             },
-        },
-        aboutContent: {
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
+            width: "80%",
+            margin: "50px auto",
         },
     })
 );

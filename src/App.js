@@ -13,6 +13,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import firebase from "./firebase";
 import { RoleContext } from "./RoleContext";
 import Project from "./Views/Projects/Project";
+import AddEditProject from "./Views/Projects/Project/addEditProjectDetails.js";
 
 function App() {
     // React.useEffect(() => {
@@ -50,6 +51,9 @@ function App() {
                         <Switch>
                             <Route path="/project/:id">
                                 <Project />
+                            </Route>
+                            <Route path="/addEditProjectDetails">
+                                <AddEditProject />
                             </Route>
                             <Route path="/">
                                 <Header />

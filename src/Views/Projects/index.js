@@ -94,10 +94,16 @@ function Projects() {
                             {projectsData.map((doc, index) => {
                                 return (
                                     <Grid item md={4}>
-                                        <Link to={"project/" + doc.id}>
+                                        <Link
+                                            to={{
+                                                pathname: "project/" + doc.id,
+                                                state: {
+                                                    projectTitle: doc.data.name,
+                                                },
+                                            }}>
                                             <ProjectCard
                                                 key={index}
-                                                projectName={doc.data.name}
+                                                projectTitle={doc.data.name}
                                                 img={doc.data.imageURL}
                                             />
                                         </Link>

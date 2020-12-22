@@ -2,8 +2,9 @@ import React from "react";
 import { useStyles as styles } from "./styles";
 import { Formik, Form, Field } from "formik";
 import { Button, LinearProgress, Modal } from "@material-ui/core";
-import { TextField } from "formik-material-ui";
+import { TextField, SimpleFileUpload } from "formik-material-ui";
 import firebase from "../../firebase";
+import _ from "lodash";
 
 function EditModal({ open, handleClose, data }) {
     const classes = styles();
@@ -18,46 +19,67 @@ function EditModal({ open, handleClose, data }) {
                 <Formik
                     initialValues={{
                         name: data?.data.name,
-                        desc: data?.data.desc,
-                        designation: data?.data.designation,
-                        type: data?.data.type,
-                        startDate: data?.data.startDate,
-                        endDate: data?.data.endDate,
-                        location: data?.data.location,
+                        image: "",
                     }}
                     validate={(values) => {
                         const errors = {};
                         if (!values.name) {
                             errors.name = "Required";
                         }
-                        if (!values.desc) {
-                            errors.desc = "Required";
-                        }
-                        if (!values.startDate) {
-                            errors.startDate = "Required";
-                        }
-                        if (!values.endDate) {
-                            errors.endDate = "Required";
-                        }
-                        if (!values.location) {
-                            errors.location = "Required";
-                        }
+                        // if (!values.image) {
+                        //     errors.image = "Required";
+                        // }
                         return errors;
                     }}
-                    onSubmit={(values, { setSubmitting }) => {
-                        console.log(data.id);
-                        // setTimeout(() => {
-                        //     console.log(values);
-                        // }, 500);
-                        firebase.db
-                            .collection("Experience")
-                            .doc(data.id)
-                            .update(values)
-                            .then(() => {
-                                setSubmitting(false);
-                                handleClose();
-                            })
-                            .catch((error) => console.log(error));
+                    onSubmit={async (values, { setSubmitting }) => {
+                        if (values.image) {
+                            const uploadTask = firebase.storage
+                                .ref(
+                                    `/images/${values.image.name}_${new Date()}`
+                                )
+                                .put(values.image);
+                            await uploadTask.on(
+                                "state_changed",
+                                console.log,
+                                console.error,
+                                () => {
+                                    firebase.storage
+                                        .ref("images")
+                                        .child(values.image.name)
+                                        .getDownloadURL()
+                                        .then((url) => {
+                                            // setImageURL(url);
+                                            values.imageURL = url;
+                                            console.log(
+                                                _.omit(values, "image")
+                                            );
+                                            firebase.db
+                                                .collection("Projects")
+                                                .doc(data.id)
+                                                .update(_.omit(values, "image"))
+                                                .then((doc) => {
+                                                    // console.log(doc);
+                                                    setSubmitting(false);
+                                                    handleClose();
+                                                })
+                                                .catch((error) =>
+                                                    console.log(error)
+                                                );
+                                        });
+                                }
+                            );
+                        } else {
+                            firebase.db
+                                .collection("Projects")
+                                .doc(data.id)
+                                .update(_.omit(values, "image"))
+                                .then((doc) => {
+                                    // console.log(doc);
+                                    setSubmitting(false);
+                                    handleClose();
+                                })
+                                .catch((error) => console.log(error));
+                        }
                     }}>
                     {({ submitForm, isSubmitting }) => (
                         <Form>
@@ -70,52 +92,9 @@ function EditModal({ open, handleClose, data }) {
                             />
                             <br />
                             <Field
-                                component={TextField}
-                                type="desc"
-                                name="desc"
-                                label="Description"
-                                fullWidth
-                                multiline
-                                rows={4}
-                            />
-                            <br />
-                            <Field
-                                component={TextField}
-                                type="type"
-                                name="type"
-                                label="Type"
-                                fullWidth
-                            />
-                            <br />
-                            <Field
-                                component={TextField}
-                                type="designation"
-                                name="designation"
-                                label="Designation"
-                                fullWidth
-                            />
-                            <br />
-                            <Field
-                                component={TextField}
-                                type="startDate"
-                                name="startDate"
-                                label="Start Date"
-                                fullWidth
-                            />
-                            <br />
-                            <Field
-                                component={TextField}
-                                type="endDate"
-                                name="endDate"
-                                label="End Date"
-                                fullWidth
-                            />
-                            <br />
-                            <Field
-                                component={TextField}
-                                type="location"
-                                name="location"
-                                label="Location"
+                                component={SimpleFileUpload}
+                                name="image"
+                                label="Image"
                                 fullWidth
                             />
                             <br />

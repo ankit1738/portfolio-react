@@ -16,7 +16,7 @@ function AddModal({ open, handleClose, data }) {
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description">
             <div className={classes.paper}>
-                <h3>Edit: </h3>
+                <h3>Add: </h3>
                 <Formik
                     initialValues={{
                         name: "",
