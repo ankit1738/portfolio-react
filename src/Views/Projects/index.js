@@ -38,16 +38,31 @@ function Projects() {
         setReload((prev) => !prev);
     };
 
-    const handleDelete = (id) => {
+    const handleDelete = (doc) => {
         if (window.confirm("Do you want to delete this record?")) {
-            firebase.db
-                .collection("Projects")
-                .doc(id)
+            firebase.storage
+                .refFromURL(doc.data.imageURL)
                 .delete()
                 .then(() => {
-                    setReload((prev) => !prev);
+                    console.log("Image deleted");
                 })
-                .catch((error) => console.log(error));
+                .catch((err) => {
+                    console.log(err);
+                });
+            firebase.db
+                .collection("ProjectDetails")
+                .doc(doc.data.projectDetails)
+                .delete()
+                .then(() => {
+                    firebase.db
+                        .collection("Projects")
+                        .doc(doc.id)
+                        .delete()
+                        .then(() => {
+                            setReload((prev) => !prev);
+                        })
+                        .catch((error) => console.log(error));
+                });
         }
     };
     useEffect(() => {
@@ -93,12 +108,15 @@ function Projects() {
                         <Grid container justify="space-between" spacing={10}>
                             {projectsData.map((doc, index) => {
                                 return (
-                                    <Grid item md={4}>
+                                    <Grid item md={4} key={doc.id}>
                                         <Link
                                             to={{
                                                 pathname: "project/" + doc.id,
                                                 state: {
                                                     projectTitle: doc.data.name,
+                                                    projectId: doc.id,
+                                                    projectDetailsId:
+                                                        doc.data.projectDetails,
                                                 },
                                             }}>
                                             <ProjectCard
@@ -126,7 +144,7 @@ function Projects() {
                                                     variant="contained"
                                                     color="secondary"
                                                     onClick={() =>
-                                                        handleDelete(doc.id)
+                                                        handleDelete(doc)
                                                     }>
                                                     Delete
                                                 </Button>
@@ -137,11 +155,9 @@ function Projects() {
                             })}
                         </Grid>
                     </Grid>
-                    <Grid item md={10} className={classes.allProject}>
-                        <Link to="">All Projects -{">"}</Link>
-                    </Grid>
                 </Grid>
             </Container>
+
             <EditModal
                 open={openEditModal}
                 handleClose={handleCloseEditModal}

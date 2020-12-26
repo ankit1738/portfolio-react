@@ -3,34 +3,38 @@ import { Container, Grid, Button } from "@material-ui/core";
 import { useStyles as styles } from "./styles";
 import { StyledTypography as Typography } from "../../../styles";
 import firebase from "../../../firebase";
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useParams, useLocation, useHistory, Link } from "react-router-dom";
 
 function Project() {
     const classes = styles();
     const location = useLocation();
     const [projectData, setProjectData] = useState([]);
     const [reload, setReload] = useState(true);
-    const { id: projectId } = useParams();
+    // const { id: projectId } = useParams();
     const history = useHistory();
-
+    console.log(location);
     const handleAdd = () => {
-        history.push("/addEditProjectDetails");
+        history.push({
+            pathname: "/addEditProjectDetails",
+            state: {
+                ...location.state,
+                projectData: projectData,
+            },
+        });
     };
 
     useEffect(() => {
         let data = [];
         firebase.db
-            .collection("Project")
-            .doc(projectId)
+            .collection("ProjectDetails")
+            .doc(location.state.projectDetailsId)
             .get()
-            .then(async (querySnapshot) => {
-                if (!querySnapshot.exists) {
+            .then(async (doc) => {
+                if (!doc.exists) {
                     console.log("No such document!");
                 } else {
-                    await querySnapshot.docs.forEach((doc) => {
-                        data.push({ id: doc.id, data: doc.data() });
-                    });
-                    setProjectData(data);
+                    console.log(doc.data());
+                    setProjectData(doc.data());
                 }
             })
             .catch((err) => {
@@ -54,41 +58,33 @@ function Project() {
                 </Grid>
                 <Grid item sm={12} xs={12}>
                     <Typography variant="h5">About:</Typography>
-                    <Typography variant="p">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book. It has
-                        survived not only five centuries, but also the leap into
-                        electronic typesetting, remaining essentially unchanged.
-                        It was popularised in the 1960s with the release of
-                        Letraset sheets containing Lorem Ipsum passages, and
-                        more recently with desktop publishing software like
-                        Aldus PageMaker including versions of Lorem Ipsum.
-                    </Typography>
+                    <Typography variant="body1">{projectData.about}</Typography>
                 </Grid>
                 <Grid item sm={12} xs={12}>
                     <Typography variant="h5">Technology:</Typography>
                     <ul>
-                        <li>
-                            <Typography variant="p">Nodejs</Typography>
-                        </li>
-                        <li>
-                            <Typography variant="p">Reactjs</Typography>
-                        </li>
-                        <li>
-                            <Typography variant="p">Firebase</Typography>
-                        </li>
-                        <li>
-                            <Typography variant="p">CSS</Typography>
-                        </li>
+                        {projectData.technologies?.split(", ").map((data) => {
+                            return (
+                                <li>
+                                    <Typography variant="p">{data}</Typography>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </Grid>
                 <Grid item sm={12} xs={12}>
-                    <Typography variant="h5">Demo Link:</Typography>
-                    <Typography variant="h5">Github Link:</Typography>
+                    <Typography variant="h5">
+                        Demo Link: {projectData.demoLink}
+                    </Typography>
+                    <Typography variant="h5">
+                        Github Link: {projectData.githubLink}
+                    </Typography>
                 </Grid>
+                <Link to="/#projects">
+                    <Button size="small" variant="contained" color="primary">
+                        Back
+                    </Button>
+                </Link>
             </Grid>
         </Container>
     );

@@ -18,28 +18,26 @@ function EditModal({ open, handleClose, data }) {
                 <Formik
                     initialValues={{
                         name: data?.data.name,
-                        level: data?.data.level,
+                        about: data?.data.about,
                     }}
                     validate={(values) => {
                         const errors = {};
                         if (!values.name) {
                             errors.name = "Required";
                         }
-                        if (!values.level) {
-                            errors.level = "Required";
+                        if (!values.about) {
+                            errors.abour = "Required";
                         }
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        console.log(data.id);
-                        // setTimeout(() => {
-                        //     console.log(values);
-                        // }, 500);
+                        console.log(values);
                         firebase.db
-                            .collection("Skills")
+                            .collection("About")
                             .doc(data.id)
                             .update(values)
                             .then(() => {
+                                console.log("Updated");
                                 setSubmitting(false);
                                 handleClose();
                             })
@@ -50,16 +48,17 @@ function EditModal({ open, handleClose, data }) {
                             <Field
                                 component={TextField}
                                 name="name"
-                                type="name"
+                                type="text"
                                 label="Name"
                                 fullWidth
                             />
                             <br />
                             <Field
                                 component={TextField}
-                                name="level"
-                                type="number"
-                                label="Level"
+                                name="about"
+                                type="text"
+                                label="About"
+                                multiline
                                 fullWidth
                             />
                             <br />

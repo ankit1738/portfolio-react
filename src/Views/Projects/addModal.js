@@ -32,35 +32,52 @@ function AddModal({ open, handleClose, data }) {
                         }
                         return errors;
                     }}
-                    onSubmit={async (values, { setSubmitting }) => {
+                    onSubmit={(values, { setSubmitting }) => {
+                        setSubmitting(true);
+                        const imageName = values.image.name + "_" + new Date();
                         const uploadTask = firebase.storage
-                            .ref(`/images/${values.image.name}`)
+                            .ref(`/images/${imageName}`)
                             .put(values.image);
-                        await uploadTask.on(
+                        uploadTask.on(
                             "state_changed",
                             console.log,
                             console.error,
-                            () => {
-                                firebase.storage
-                                    .ref("images")
-                                    .child(values.image.name)
-                                    .getDownloadURL()
-                                    .then((url) => {
-                                        // setImageURL(url);
-                                        values.imageURL = url;
-                                        console.log(_.omit(values, "image"));
-                                        firebase.db
-                                            .collection("Projects")
-                                            .add(_.omit(values, "image"))
-                                            .then((doc) => {
-                                                // console.log(doc);
-                                                setSubmitting(false);
-                                                handleClose();
-                                            })
-                                            .catch((error) =>
-                                                console.log(error)
-                                            );
-                                    });
+                            async () => {
+                                try {
+                                    let imgUrl = await firebase.storage
+                                        .ref("images")
+                                        .child(imageName)
+                                        .getDownloadURL();
+                                    values.imageURL = imgUrl;
+
+                                    const projectDetails = await firebase.db
+                                        .collection("ProjectDetails")
+                                        .add({});
+
+                                    const project = await firebase.db
+                                        .collection("Projects")
+                                        .add(
+                                            _.omit(
+                                                {
+                                                    ...values,
+                                                    projectDetails:
+                                                        projectDetails.id,
+                                                },
+                                                "image"
+                                            )
+                                        );
+
+                                    const projectDetailsUpdated = await firebase.db
+                                        .collection("ProjectDetails")
+                                        .doc(projectDetails.id)
+                                        .update({ project: project.id });
+                                    setSubmitting(false);
+                                    handleClose();
+                                } catch (error) {
+                                    setSubmitting(false);
+
+                                    console.log(console.error(error));
+                                }
                             }
                         );
                     }}>

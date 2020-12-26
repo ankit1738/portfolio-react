@@ -2,10 +2,10 @@ import React from "react";
 import { useStyles as styles } from "./styles";
 import { Formik, Form, Field } from "formik";
 import { Button, LinearProgress, Modal } from "@material-ui/core";
-import { TextField } from "formik-material-ui";
+import { TextField, InputBase } from "formik-material-ui";
 import firebase from "../../firebase";
 
-function EditModal({ open, handleClose, data }) {
+function AddModal({ open, handleClose, data }) {
     const classes = styles();
     return (
         <Modal
@@ -17,8 +17,8 @@ function EditModal({ open, handleClose, data }) {
                 <h3>Edit: </h3>
                 <Formik
                     initialValues={{
-                        name: data?.data.name,
-                        level: data?.data.level,
+                        name: "",
+                        level: "",
                     }}
                     validate={(values) => {
                         const errors = {};
@@ -26,20 +26,17 @@ function EditModal({ open, handleClose, data }) {
                             errors.name = "Required";
                         }
                         if (!values.level) {
-                            errors.level = "Required";
+                            errors.desc = "Required";
                         }
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        console.log(data.id);
-                        // setTimeout(() => {
-                        //     console.log(values);
-                        // }, 500);
+                        console.log(values);
                         firebase.db
                             .collection("Skills")
-                            .doc(data.id)
-                            .update(values)
-                            .then(() => {
+                            .add(values)
+                            .then((doc) => {
+                                // console.log(doc);
                                 setSubmitting(false);
                                 handleClose();
                             })
@@ -57,12 +54,11 @@ function EditModal({ open, handleClose, data }) {
                             <br />
                             <Field
                                 component={TextField}
-                                name="level"
                                 type="number"
+                                name="level"
                                 label="Level"
                                 fullWidth
                             />
-                            <br />
                             {isSubmitting && <LinearProgress />}
                             <br />
                             <Button
@@ -79,4 +75,4 @@ function EditModal({ open, handleClose, data }) {
     );
 }
 
-export default EditModal;
+export default AddModal;

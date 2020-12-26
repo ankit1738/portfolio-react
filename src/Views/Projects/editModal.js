@@ -31,14 +31,14 @@ function EditModal({ open, handleClose, data }) {
                         // }
                         return errors;
                     }}
-                    onSubmit={async (values, { setSubmitting }) => {
+                    onSubmit={(values, { setSubmitting }) => {
                         if (values.image) {
                             const uploadTask = firebase.storage
                                 .ref(
                                     `/images/${values.image.name}_${new Date()}`
                                 )
                                 .put(values.image);
-                            await uploadTask.on(
+                            uploadTask.on(
                                 "state_changed",
                                 console.log,
                                 console.error,
