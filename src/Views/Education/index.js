@@ -81,13 +81,17 @@ function About() {
                     <Typography variant="h4" className={classes.heading}>
                         Education
                     </Typography>
-                    <Button
-                        size="small"
-                        variant="contained"
-                        color="primary"
-                        onClick={handleOpenAddModal}>
-                        Add Education
-                    </Button>
+                    {role === "admin" ? (
+                        <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            onClick={handleOpenAddModal}>
+                            Add Education
+                        </Button>
+                    ) : (
+                        ""
+                    )}
                 </Grid>
                 <Grid item lg={10} className={classes.headingGrid}>
                     <Divider className={classes.divider} />

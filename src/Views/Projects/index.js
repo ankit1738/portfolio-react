@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Divider, Grid, Button } from "@material-ui/core";
 import { useStyles as styles } from "./styles";
 import ProjectCard from "./projectCard";
@@ -9,6 +9,7 @@ import firebase from "../../firebase";
 import { StyledTypography as Typography } from "../../styles";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
+import { RoleContext } from "../../RoleContext";
 
 function Projects() {
     const classes = styles();
@@ -17,6 +18,7 @@ function Projects() {
     const [openEditModal, setOpenEditModal] = useState(false);
     const [openAddModal, setOpenAddModal] = useState(false);
     const [reload, setReload] = useState(true);
+    const { role } = useContext(RoleContext);
 
     const edit = (id) => {
         console.log(id);
@@ -90,13 +92,17 @@ function Projects() {
                     <Typography variant="h4" className={classes.heading}>
                         Projects
                     </Typography>
-                    <Button
-                        size="small"
-                        variant="contained"
-                        color="primary"
-                        onClick={handleOpenAddModal}>
-                        Add Project
-                    </Button>
+                    {role === "admin" ? (
+                        <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            onClick={handleOpenAddModal}>
+                            Add Project
+                        </Button>
+                    ) : (
+                        ""
+                    )}
                 </Grid>
                 <Grid item lg={10} md={10} className={classes.headingGrid}>
                     <Divider className={classes.divider} />
@@ -125,31 +131,35 @@ function Projects() {
                                                 img={doc.data.imageURL}
                                             />
                                         </Link>
-                                        <Grid item lg={12}>
-                                            <>
-                                                <Button
-                                                    size="small"
-                                                    variant="contained"
-                                                    color="primary"
-                                                    onClick={() =>
-                                                        edit(doc.id)
-                                                    }>
-                                                    Edit
-                                                </Button>
-                                                <Button
-                                                    className={
-                                                        classes.leftMargin
-                                                    }
-                                                    size="small"
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    onClick={() =>
-                                                        handleDelete(doc)
-                                                    }>
-                                                    Delete
-                                                </Button>
-                                            </>
-                                        </Grid>
+                                        {role === "admin" ? (
+                                            <Grid item lg={12}>
+                                                <>
+                                                    <Button
+                                                        size="small"
+                                                        variant="contained"
+                                                        color="primary"
+                                                        onClick={() =>
+                                                            edit(doc.id)
+                                                        }>
+                                                        Edit
+                                                    </Button>
+                                                    <Button
+                                                        className={
+                                                            classes.leftMargin
+                                                        }
+                                                        size="small"
+                                                        variant="contained"
+                                                        color="secondary"
+                                                        onClick={() =>
+                                                            handleDelete(doc)
+                                                        }>
+                                                        Delete
+                                                    </Button>
+                                                </>
+                                            </Grid>
+                                        ) : (
+                                            ""
+                                        )}
                                     </Grid>
                                 );
                             })}

@@ -17,23 +17,23 @@ function AddModal({ open, handleClose, data }) {
                 <h3>Edit: </h3>
                 <Formik
                     initialValues={{
-                        name: "",
-                        level: "",
+                        name: data?.data.name,
+                        about: data?.data.about,
                     }}
                     validate={(values) => {
                         const errors = {};
                         if (!values.name) {
                             errors.name = "Required";
                         }
-                        if (!values.level) {
-                            errors.desc = "Required";
+                        if (!values.about) {
+                            errors.abour = "Required";
                         }
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         console.log(values);
                         firebase.db
-                            .collection("Skills")
+                            .collection("About")
                             .add(values)
                             .then((doc) => {
                                 // console.log(doc);
@@ -47,18 +47,20 @@ function AddModal({ open, handleClose, data }) {
                             <Field
                                 component={TextField}
                                 name="name"
-                                type="name"
+                                type="text"
                                 label="Name"
                                 fullWidth
                             />
                             <br />
                             <Field
                                 component={TextField}
-                                type="number"
-                                name="level"
-                                label="Level"
+                                name="about"
+                                type="text"
+                                label="About"
+                                multiline
                                 fullWidth
                             />
+                            <br />
                             {isSubmitting && <LinearProgress />}
                             <br />
                             <Button

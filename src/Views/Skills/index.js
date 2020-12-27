@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Divider, Grid, Box, Button } from "@material-ui/core";
 import {
     useStyles as styles,
@@ -10,6 +10,7 @@ import { StyledTypography as Typography } from "../../styles";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
 import firebase from "../../firebase";
+import { RoleContext } from "../../RoleContext";
 
 function Skills() {
     const classes = styles();
@@ -18,6 +19,7 @@ function Skills() {
     const [openEditModal, setOpenEditModal] = useState(false);
     const [openAddModal, setOpenAddModal] = useState(false);
     const [reload, setReload] = useState(true);
+    const { role } = useContext(RoleContext);
 
     const handleOpenAddModal = (id) => {
         setOpenAddModal(true);
@@ -76,13 +78,17 @@ function Skills() {
                     <Typography variant="h4" className={classes.heading}>
                         Technical Skills
                     </Typography>
-                    <Button
-                        size="small"
-                        variant="contained"
-                        color="primary"
-                        onClick={handleOpenAddModal}>
-                        Add Skills
-                    </Button>
+                    {role === "admin" ? (
+                        <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            onClick={handleOpenAddModal}>
+                            Add Skills
+                        </Button>
+                    ) : (
+                        ""
+                    )}
                 </Grid>
                 <Grid item lg={9} md={9} className={classes.headingGrid}>
                     <Divider className={classes.divider} />
@@ -110,31 +116,37 @@ function Skills() {
                                                 value={data.data.level}
                                             />
                                         </Tooltip>
-                                        <Grid item lg={12}>
-                                            <>
-                                                <Button
-                                                    size="small"
-                                                    variant="contained"
-                                                    color="primary"
-                                                    onClick={() =>
-                                                        edit(data.id)
-                                                    }>
-                                                    Edit
-                                                </Button>
-                                                <Button
-                                                    className={
-                                                        classes.leftMargin
-                                                    }
-                                                    size="small"
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    onClick={() =>
-                                                        handleDelete(data.id)
-                                                    }>
-                                                    Delete
-                                                </Button>
-                                            </>
-                                        </Grid>
+                                        {role === "admin" ? (
+                                            <Grid item lg={12}>
+                                                <>
+                                                    <Button
+                                                        size="small"
+                                                        variant="contained"
+                                                        color="primary"
+                                                        onClick={() =>
+                                                            edit(data.id)
+                                                        }>
+                                                        Edit
+                                                    </Button>
+                                                    <Button
+                                                        className={
+                                                            classes.leftMargin
+                                                        }
+                                                        size="small"
+                                                        variant="contained"
+                                                        color="secondary"
+                                                        onClick={() =>
+                                                            handleDelete(
+                                                                data.id
+                                                            )
+                                                        }>
+                                                        Delete
+                                                    </Button>
+                                                </>
+                                            </Grid>
+                                        ) : (
+                                            ""
+                                        )}
                                     </Box>
                                 );
                             })}
@@ -159,31 +171,37 @@ function Skills() {
                                                 value={data.data.level}
                                             />
                                         </Tooltip>
-                                        <Grid item lg={12}>
-                                            <>
-                                                <Button
-                                                    size="small"
-                                                    variant="contained"
-                                                    color="primary"
-                                                    onClick={() =>
-                                                        edit(data.id)
-                                                    }>
-                                                    Edit
-                                                </Button>
-                                                <Button
-                                                    className={
-                                                        classes.leftMargin
-                                                    }
-                                                    size="small"
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    onClick={() =>
-                                                        handleDelete(data.id)
-                                                    }>
-                                                    Delete
-                                                </Button>
-                                            </>
-                                        </Grid>
+                                        {role === "admin" ? (
+                                            <Grid item lg={12}>
+                                                <>
+                                                    <Button
+                                                        size="small"
+                                                        variant="contained"
+                                                        color="primary"
+                                                        onClick={() =>
+                                                            edit(data.id)
+                                                        }>
+                                                        Edit
+                                                    </Button>
+                                                    <Button
+                                                        className={
+                                                            classes.leftMargin
+                                                        }
+                                                        size="small"
+                                                        variant="contained"
+                                                        color="secondary"
+                                                        onClick={() =>
+                                                            handleDelete(
+                                                                data.id
+                                                            )
+                                                        }>
+                                                        Delete
+                                                    </Button>
+                                                </>
+                                            </Grid>
+                                        ) : (
+                                            ""
+                                        )}
                                     </Box>
                                 );
                             })}

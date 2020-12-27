@@ -29,7 +29,9 @@ export function TimelineComponent(props) {
                         <Grid item lg={9} xs={12}>
                             <Grid container className={classes.centerGrid}>
                                 <Grid item lg={12}>
-                                    <Typography variant="h5">
+                                    <Typography
+                                        variant="h5"
+                                        className={classes.title}>
                                         {props.data.name}
                                     </Typography>
                                 </Grid>

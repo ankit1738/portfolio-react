@@ -11,9 +11,11 @@ const useStyles = makeStyles((theme) =>
             boxShadow: "none",
         },
         toolbar: {
+            justifyContent: "space-between",
             padding: "0",
         },
         right: {
+            float: "right",
             "& *": {
                 color: "#ffffff",
                 marginRight: theme.spacing(8),
@@ -24,6 +26,14 @@ const useStyles = makeStyles((theme) =>
         },
         title: {
             flexGrow: 1,
+        },
+        adminButton: {
+            backgroundColor: theme.orange,
+            margin: "0 auto",
+            display: "inline",
+            "& span": {
+                margin: "0 32px",
+            },
         },
     })
 );

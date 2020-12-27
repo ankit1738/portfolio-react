@@ -39,9 +39,10 @@ function App() {
     const theme = createMuiTheme({
         primary: "",
         secondary: "#ffffff",
+        orange: "#fc7708",
         background: "#18242b",
     });
-    const [role, setRole] = useState("admin");
+    const [role, setRole] = useState("user");
 
     return (
         <Fragment>

@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme) =>
         },
         heading: {
             // fontSize: "32px",
-            color: theme.secondary,
+            color: theme.orange + `!important`,
         },
         divider: {
             height: "2px",

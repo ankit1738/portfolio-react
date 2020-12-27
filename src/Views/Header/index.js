@@ -17,14 +17,19 @@ function Header() {
     const toggleDrawer = (state) => {
         setOpen((current) => !current);
     };
+
+    const handleAdminAccess = () => {};
+
     return (
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appBar}>
                 <Container maxWidth="lg">
                     <Toolbar className={classes.toolbar}>
-                        <Typography variant="h6" className={classes.title}>
-                            Ankit Kumar
-                        </Typography>
+                        <div className={classes.left}>
+                            <Typography variant="h6" className={classes.title}>
+                                Ankit Kumar
+                            </Typography>
+                        </div>
                         {window.innerWidth > 600 ? (
                             <div className={classes.right}>
                                 <Link underline="none" href="#education">
@@ -42,6 +47,14 @@ function Header() {
                                 <Link underline="none" href="#contact">
                                     Contact
                                 </Link>
+                                <Button
+                                    size="small"
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleAdminAccess}
+                                    className={classes.adminButton}>
+                                    Admin
+                                </Button>
                             </div>
                         ) : (
                             <Fragment>

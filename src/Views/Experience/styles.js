@@ -7,11 +7,11 @@ export const useStyles = makeStyles((theme) =>
         },
         heading: {
             // fontSize: "32px",
-            color: theme.secondary,
+            color: theme.orange + `!important`,
         },
         divider: {
             height: "2px",
-            background: theme.secondary,
+            background: theme.orange + `!important`,
             width: "100%",
         },
 
@@ -44,6 +44,9 @@ export const useStyles = makeStyles((theme) =>
         },
         leftMargin: {
             marginLeft: "16px",
+        },
+        title: {
+            color: theme.orange,
         },
     })
 );

@@ -29,6 +29,7 @@ export const useStyles = makeStyles((theme) =>
             "& div:first-child": {
                 display: "flex",
                 alignItems: "center",
+                flexDirection: "column",
             },
         },
         avatar: {
@@ -61,6 +62,9 @@ export const useStyles = makeStyles((theme) =>
         },
         leftMargin: {
             marginLeft: "16px",
+        },
+        nameColor: {
+            color: theme.orange + `!important`,
         },
     })
 );

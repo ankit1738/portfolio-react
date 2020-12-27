@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Divider, Grid, Button } from "@material-ui/core";
 import { useStyles as styles } from "./styles";
 import {
@@ -10,9 +10,11 @@ import EditModal from "./editModal";
 import AddModal from "./addModal";
 import firebase from "../../firebase";
 import moment from "moment";
+import { RoleContext } from "../../RoleContext";
 
 function Experience() {
     const classes = styles();
+    const { role } = useContext(RoleContext);
     const [experienceData, setExperienceData] = useState([]);
     const [editData, setEditData] = useState();
     const [openEditModal, setOpenEditModal] = useState(false);
@@ -81,13 +83,17 @@ function Experience() {
                     <Typography variant="h4" className={classes.heading}>
                         Experience
                     </Typography>
-                    <Button
-                        size="small"
-                        variant="contained"
-                        color="primary"
-                        onClick={handleOpenAddModal}>
-                        Add Experience
-                    </Button>
+                    {role === "admin" ? (
+                        <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            onClick={handleOpenAddModal}>
+                            Add Experience
+                        </Button>
+                    ) : (
+                        ""
+                    )}
                 </Grid>
                 <Grid item md={10} className={classes.contentContainer}>
                     <Divider className={classes.divider} />
@@ -105,6 +111,7 @@ function Experience() {
                                         id={doc.id}
                                         edit={edit}
                                         handleDelete={handleDelete}
+                                        role={role}
                                     />
                                 );
                             })}
