@@ -10,10 +10,11 @@ import Projects from "./Views/Projects/index";
 import Contact from "./Views/Contact/index";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import firebase from "./firebase";
 import { RoleContext } from "./RoleContext";
 import Project from "./Views/Projects/Project";
+import AdminLogin from "./Views/AdminLogin/index";
 import AddEditProject from "./Views/Projects/Project/addEditProjectDetails.js";
+import Fade from "react-reveal/Fade";
 
 function App() {
     // React.useEffect(() => {
@@ -53,23 +54,38 @@ function App() {
                             <Route path="/project/:id">
                                 <Project />
                             </Route>
+                            <Route path="/adminLogin">
+                                <AdminLogin />
+                            </Route>
                             <Route path="/addEditProjectDetails">
                                 <AddEditProject />
                             </Route>
                             <Route path="/">
                                 <Header />
                                 <a id="about"></a>
-                                <About />
+                                <Fade top>
+                                    <About />
+                                </Fade>
                                 <a id="education"></a>
-                                <Education />
+                                <Fade left>
+                                    <Education />
+                                </Fade>
                                 <a id="experience"></a>
-                                <Experience />
+                                <Fade right>
+                                    <Experience />
+                                </Fade>
                                 <a id="skills"></a>
-                                <Skills />
+                                <Fade left>
+                                    <Skills />
+                                </Fade>
                                 <a id="projects"></a>
-                                <Projects />
+                                <Fade right>
+                                    <Projects />
+                                </Fade>
                                 <a id="contact"></a>
-                                <Contact />
+                                <Fade left>
+                                    <Contact />
+                                </Fade>
                             </Route>
                         </Switch>
                     </BrowserRouter>

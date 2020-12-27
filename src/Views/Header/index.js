@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import {
     AppBar,
     Toolbar,
@@ -9,16 +9,21 @@ import {
     Drawer,
 } from "@material-ui/core";
 import styles from "./styles";
+import { useHistory } from "react-router-dom";
 
 function Header() {
     const classes = styles();
     const [open, setOpen] = useState(false);
+    const history = useHistory();
 
     const toggleDrawer = (state) => {
         setOpen((current) => !current);
     };
 
-    const handleAdminAccess = () => {};
+    const handleAdminAccess = () => {
+        console.log("here");
+        history.push("/adminLogin");
+    };
 
     return (
         <div className={classes.root}>
