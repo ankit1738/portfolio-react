@@ -99,6 +99,12 @@ function AddEditProjectDetails() {
                             <Button
                                 variant="contained"
                                 color="primary"
+                                onClick={() => history.goBack()}>
+                                Back
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
                                 onClick={submitForm}>
                                 Submit
                             </Button>

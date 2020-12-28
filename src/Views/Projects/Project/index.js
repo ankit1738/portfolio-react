@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Grid, Button } from "@material-ui/core";
 import { useStyles as styles } from "./styles";
 import { StyledTypography as Typography } from "../../../styles";
 import firebase from "../../../firebase";
-import { useParams, useLocation, useHistory, Link } from "react-router-dom";
+import { useLocation, useHistory, Link } from "react-router-dom";
+import { RoleContext } from "../../../RoleContext";
 
 function Project() {
     const classes = styles();
     const location = useLocation();
     const [projectData, setProjectData] = useState([]);
     const [reload, setReload] = useState(true);
-    // const { id: projectId } = useParams();
+    const { role } = useContext(RoleContext);
+
     const history = useHistory();
     console.log(location);
     const handleAdd = () => {
@@ -48,13 +50,17 @@ function Project() {
                     <Typography variant="h3">
                         {location.state?.projectTitle}
                     </Typography>
-                    <Button
-                        size="small"
-                        variant="contained"
-                        color="primary"
-                        onClick={handleAdd}>
-                        Add/Edit project details
-                    </Button>
+                    {role === "admin" ? (
+                        <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            onClick={handleAdd}>
+                            Add/Edit project details
+                        </Button>
+                    ) : (
+                        ""
+                    )}
                 </Grid>
                 <Grid item sm={12} xs={12}>
                     <Typography variant="h5">About:</Typography>

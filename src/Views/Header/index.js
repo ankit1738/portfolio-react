@@ -10,11 +10,13 @@ import {
 } from "@material-ui/core";
 import styles from "./styles";
 import { useHistory } from "react-router-dom";
-
+import { RoleContext } from "../../RoleContext";
+import firebase from "../../firebase";
 function Header() {
     const classes = styles();
     const [open, setOpen] = useState(false);
     const history = useHistory();
+    const { role, setRole } = useContext(RoleContext);
 
     const toggleDrawer = (state) => {
         setOpen((current) => !current);
@@ -23,6 +25,17 @@ function Header() {
     const handleAdminAccess = () => {
         console.log("here");
         history.push("/adminLogin");
+    };
+
+    const handleLogout = () => {
+        firebase.auth
+            .signOut()
+            .then(function () {
+                console.log("Sign-out successful.");
+            })
+            .catch(function (error) {
+                console.log("An error happened.");
+            });
     };
 
     return (
@@ -52,14 +65,25 @@ function Header() {
                                 <Link underline="none" href="#contact">
                                     Contact
                                 </Link>
-                                <Button
-                                    size="small"
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={handleAdminAccess}
-                                    className={classes.adminButton}>
-                                    Admin
-                                </Button>
+                                {role === "admin" ? (
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleLogout}
+                                        className={classes.adminButton}>
+                                        Logout
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleAdminAccess}
+                                        className={classes.adminButton}>
+                                        Admin
+                                    </Button>
+                                )}
                             </div>
                         ) : (
                             <Fragment>

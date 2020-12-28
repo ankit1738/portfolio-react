@@ -74,7 +74,6 @@ function About() {
     };
 
     useEffect(() => {
-        console.log("here 1");
         try {
             firebase.db
                 .collection("About")

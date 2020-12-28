@@ -14,9 +14,11 @@ firebase.initializeApp({
 
 let db = firebase.firestore();
 let storage = firebase.storage();
+let auth = firebase.auth();
 
 export default {
     firebase,
     storage,
     db,
+    auth,
 };

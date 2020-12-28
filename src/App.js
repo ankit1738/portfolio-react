@@ -1,4 +1,4 @@
-import React, { Fragment, createContext, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./App.css";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import Header from "./Views/Header/index";
@@ -15,36 +15,38 @@ import Project from "./Views/Projects/Project";
 import AdminLogin from "./Views/AdminLogin/index";
 import AddEditProject from "./Views/Projects/Project/addEditProjectDetails.js";
 import Fade from "react-reveal/Fade";
+import firebase from "firebase";
 
 function App() {
-    // React.useEffect(() => {
-    //     window.addEventListener("resize", resize);
-    //     return () => window.removeEventListener("resize", resize);
-    // });
-
-    // const resize = () => {
-    //     console.log(window.innerWidth);
-    // };
-    // console.log("FIrebase");
-    // firebase.db
-    //     .collection("About")
-    //     .get()
-    //     .then((querySnapshot) => {
-    //         querySnapshot.forEach((doc) => {
-    //             console.log(doc.data() + " " + doc.id);
-    //         });
-    //     })
-    //     .catch((err) => {
-    //         console.log(err.message);
-    //     });
     const theme = createMuiTheme({
         primary: "",
         secondary: "#ffffff",
         orange: "#fc7708",
         background: "#18242b",
+        overrides: {
+            MuiButton: {
+                containedPrimary: {
+                    "&:hover": {
+                        backgroundColor: "#c95400",
+                    },
+                    backgroundColor: "#fc7708",
+                },
+            },
+        },
     });
     const [role, setRole] = useState("user");
 
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            console.log("Logged In");
+            setRole("admin");
+        } else {
+            console.log("Logged Out");
+            setRole("user");
+        }
+    });
+
+    // useEffect(() => {}, []);
     return (
         <Fragment>
             <ThemeProvider theme={theme}>

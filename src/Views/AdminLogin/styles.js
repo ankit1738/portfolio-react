@@ -10,8 +10,16 @@ export const useStyles = makeStyles((theme) =>
             transform: "translate(-50%, -50%)",
         },
         form: {
-            "& >div:first-child": {
-                borderBottom: "1px solid white",
+            "& > div > div ": {
+                "& :hover": {
+                    borderBottom: "none",
+                },
+                borderBottom: "1px solid " + theme.orange,
+            },
+            "& > div > div:before ": {
+                borderBottom: "none",
+            },
+            "& > div": {
                 "& label, div": {
                     color: "#ffffff",
                 },
