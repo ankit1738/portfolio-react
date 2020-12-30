@@ -2,7 +2,7 @@ import firebase from "firebase";
 import "firebase/firestore";
 
 firebase.initializeApp({
-    apiKey: "AIzaSyCd2WpV0xMFYFzqJxRD1J-7YHZ4ylc6Ou8",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "portfolio-1738.firebaseapp.com",
     databaseURL: "https://portfolio-1738.firebaseio.com",
     projectId: "portfolio-1738",
