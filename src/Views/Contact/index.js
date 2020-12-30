@@ -29,7 +29,7 @@ function Contact() {
                 </Grid>
             </Grid>
             <Container maxWidth="lg" className={classes.contentContainer}>
-                <Grid container justify="center" spacing={10}>
+                <Grid container justify="center">
                     {/* <Grid item md={10}>
                         ankit1738@gmail.com
                     </Grid> */}

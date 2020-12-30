@@ -54,7 +54,6 @@ function Skills() {
         }
     };
     useEffect(() => {
-        console.log("REnder");
         let data = [];
         firebase.db
             .collection("Skills")
@@ -95,8 +94,12 @@ function Skills() {
                 </Grid>
             </Grid>
             <Container maxWidth="lg" className={classes.contentContainer}>
-                <Grid container justify="center" spacing={10}>
-                    <Grid item lg={5} md={5}>
+                <Grid
+                    container
+                    justify={
+                        window.innerWidth < 600 ? "space-between" : "center"
+                    }>
+                    <Grid item lg={5} md={5} className={classes.spacingRight}>
                         {skillsData
                             .slice(0, Math.ceil(skillsData.length / 2))
                             .map((data, index) => {
@@ -151,7 +154,7 @@ function Skills() {
                                 );
                             })}
                     </Grid>
-                    <Grid item lg={5} md={5}>
+                    <Grid item lg={5} md={5} className={classes.spacingLeft}>
                         {skillsData
                             .slice(-Math.floor(skillsData.length / 2))
                             .map((data, index) => {

@@ -103,7 +103,7 @@ function About() {
     return (
         <Container maxWidth="lg" className={classes.root}>
             <Container maxWidth="lg" className={classes.contentContainer}>
-                <Grid container className={classes.aboutGrid} spacing={10}>
+                <Grid container className={classes.aboutGrid}>
                     <Grid item sm={5} xs={12} className={classes.avatarGrid}>
                         <img className={classes.avatar} src={dpURL} />
                         {role === "admin" ? (

@@ -108,7 +108,7 @@ function Projects() {
             <Container maxWidth="lg" className={classes.contentContainer}>
                 <Grid container justify="center">
                     <Grid item md={10}>
-                        <Grid container justify="space-between" spacing={10}>
+                        <Grid container justify="space-between">
                             {projectsData.map((doc, index) => {
                                 return (
                                     <Grid item md={4} key={doc.id}>

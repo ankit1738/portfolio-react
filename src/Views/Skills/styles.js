@@ -23,7 +23,7 @@ export const useStyles = makeStyles((theme) =>
             color: theme.secondary,
         },
         marginTop: {
-            marginTop: "48px",
+            margin: "48px 0",
         },
         paper: {
             position: "absolute",
@@ -38,6 +38,14 @@ export const useStyles = makeStyles((theme) =>
         },
         leftMargin: {
             marginLeft: "16px",
+        },
+        spacingRight: {
+            paddingRight: "24px",
+            width: "50%",
+        },
+        spacingLeft: {
+            paddingLeft: "24px",
+            width: "50%",
         },
     })
 );

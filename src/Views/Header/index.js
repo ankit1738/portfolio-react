@@ -12,14 +12,16 @@ import styles from "./styles";
 import { useHistory } from "react-router-dom";
 import { RoleContext } from "../../RoleContext";
 import firebase from "../../firebase";
+import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@material-ui/icons/Close";
 function Header() {
     const classes = styles();
-    const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const history = useHistory();
     const { role, setRole } = useContext(RoleContext);
 
     const toggleDrawer = (state) => {
-        setOpen((current) => !current);
+        setIsOpen((current) => !current);
     };
 
     const handleAdminAccess = () => {
@@ -86,12 +88,24 @@ function Header() {
                             </div>
                         ) : (
                             <Fragment>
-                                <Button onClick={toggleDrawer}>Ham</Button>
+                                <Button onClick={toggleDrawer}>
+                                    <MenuIcon
+                                        style={{ fontSize: 25 }}
+                                        className={classes.ham}
+                                    />
+                                </Button>
                                 <Drawer
+                                    className={classes.drawer}
                                     anchor="right"
-                                    open={open}
+                                    open={isOpen}
                                     onClose={toggleDrawer}
                                     onClick={toggleDrawer}>
+                                    {/* <p>
+                                        <CloseIcon styles={{ fontSize: 25 }} />
+                                    </p> */}
+                                    {/* <div
+                                        onClick={toggleDrawer}
+                                        role="presentation"> */}
                                     <Link underline="none" href="#education">
                                         Education
                                     </Link>
@@ -107,6 +121,26 @@ function Header() {
                                     <Link underline="none" href="#contact">
                                         Contact
                                     </Link>
+                                    {role === "admin" ? (
+                                        <Button
+                                            size="small"
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={handleLogout}
+                                            className={classes.adminButton}>
+                                            Logout
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            size="small"
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={handleAdminAccess}
+                                            className={classes.adminButton}>
+                                            Admin
+                                        </Button>
+                                    )}
+                                    {/* </div> */}
                                 </Drawer>
                             </Fragment>
                         )}

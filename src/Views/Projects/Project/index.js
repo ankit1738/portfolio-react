@@ -45,7 +45,7 @@ function Project() {
     }, [reload]);
     return (
         <Container maxWidth="lg" className={classes.root}>
-            <Grid container className={classes.aboutGrid} spacing={10}>
+            <Grid container className={classes.aboutGrid}>
                 <Grid item className={classes.avatarGrid}>
                     <Typography variant="h3" className={classes.orange}>
                         {location.state?.projectTitle}

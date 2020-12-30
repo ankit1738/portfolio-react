@@ -21,7 +21,7 @@ function AddEditProjectDetails() {
 
     return (
         <Container maxWidth="lg" className={classes.root}>
-            <Grid container className={classes.aboutGrid} spacing={10}>
+            <Grid container className={classes.aboutGrid}>
                 <Formik
                     initialValues={{
                         about: projectData.about,

@@ -22,7 +22,6 @@ function Experience() {
     const [reload, setReload] = useState(true);
 
     useEffect(() => {
-        console.log("REnder");
         let data = [];
         firebase.db
             .collection("Experience")

@@ -35,6 +35,29 @@ const useStyles = makeStyles((theme) =>
                 margin: "0 32px",
             },
         },
+        ham: {
+            color: theme.secondary,
+            padding: "0px",
+        },
+        drawer: {
+            "& .MuiPaper-root": {
+                width: "50%",
+                backgroundColor: theme.background,
+                "& a": {
+                    borderBottom: "2px solid " + theme.orange,
+                    color: theme.secondary,
+                    padding: "16px 24px",
+                    margin: "0 12px",
+                },
+                "& button": {
+                    margin: "16px 24px",
+
+                    "& span": {
+                        margin: "0 auto",
+                    },
+                },
+            },
+        },
     })
 );
 
