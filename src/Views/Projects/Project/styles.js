@@ -42,5 +42,16 @@ export const useStyles = makeStyles((theme) =>
             width: "80%",
             margin: "50px auto",
         },
+        link: {
+            color: theme.secondary,
+            textDecoration: "none",
+        },
+        orange: {
+            color: theme.orange,
+        },
+        aboutText: {
+            whiteSpace: "pre-wrap",
+            fontFamily: "Roboto, sans-serif",
+        },
     })
 );

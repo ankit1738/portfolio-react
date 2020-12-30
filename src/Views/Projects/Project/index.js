@@ -5,6 +5,7 @@ import { StyledTypography as Typography } from "../../../styles";
 import firebase from "../../../firebase";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import { RoleContext } from "../../../RoleContext";
+import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 
 function Project() {
     const classes = styles();
@@ -47,7 +48,7 @@ function Project() {
         <Container maxWidth="lg" className={classes.root}>
             <Grid container className={classes.aboutGrid} spacing={10}>
                 <Grid item className={classes.avatarGrid}>
-                    <Typography variant="h3">
+                    <Typography variant="h3" className={classes.orange}>
                         {location.state?.projectTitle}
                     </Typography>
                     {role === "admin" ? (
@@ -63,11 +64,19 @@ function Project() {
                     )}
                 </Grid>
                 <Grid item sm={12} xs={12}>
-                    <Typography variant="h5">About:</Typography>
-                    <Typography variant="body1">{projectData.about}</Typography>
+                    <Typography variant="h5" className={classes.orange}>
+                        About:
+                    </Typography>
+                    <Typography variant="body1">
+                        <pre className={classes.aboutText}>
+                            {projectData.about}
+                        </pre>
+                    </Typography>
                 </Grid>
                 <Grid item sm={12} xs={12}>
-                    <Typography variant="h5">Technology:</Typography>
+                    <Typography variant="h5" className={classes.orange}>
+                        Technology:
+                    </Typography>
                     <ul>
                         {projectData.technologies?.split(", ").map((data) => {
                             return (
@@ -79,18 +88,43 @@ function Project() {
                     </ul>
                 </Grid>
                 <Grid item sm={12} xs={12}>
-                    <Typography variant="h5">
-                        Demo Link: {projectData.demoLink}
+                    <Typography variant="h5" className={classes.orange}>
+                        Demo Link:{" "}
                     </Typography>
-                    <Typography variant="h5">
-                        Github Link: {projectData.githubLink}
+                    <Typography variant="p">
+                        <a
+                            href={projectData.demoLink}
+                            target="_blank"
+                            className={classes.link}>
+                            {projectData.demoLink}
+                            <OpenInNewIcon style={{ foneSize: 16 }} />
+                        </a>
                     </Typography>
                 </Grid>
-                <Link to="/#projects">
-                    <Button size="small" variant="contained" color="primary">
-                        Back
-                    </Button>
-                </Link>
+                <Grid item sm={12} xs={12}>
+                    <Typography variant="h5" className={classes.orange}>
+                        Github Link:
+                    </Typography>
+                    <Typography variant="p">
+                        <a
+                            href={projectData.githubLink}
+                            target="_blank"
+                            className={classes.link}>
+                            {projectData.githubLink}
+                            <OpenInNewIcon style={{ foneSize: 16 }} />
+                        </a>
+                    </Typography>
+                </Grid>
+                <Grid item sm={12} xs={12}>
+                    <Link to="/#projects">
+                        <Button
+                            size="small"
+                            variant="contained"
+                            color="primary">
+                            Back
+                        </Button>
+                    </Link>
+                </Grid>
             </Grid>
         </Container>
     );
