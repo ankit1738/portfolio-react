@@ -112,7 +112,7 @@ function Projects() {
                             {projectsData.map((doc, index) => {
                                 return (
                                     <Grid item md={4} key={doc.id}>
-                                        {/* <Link
+                                        <Link
                                             to={{
                                                 pathname: "/project/" + doc.id,
                                                 state: {
@@ -121,14 +121,14 @@ function Projects() {
                                                     projectDetailsId:
                                                         doc.data.projectDetails,
                                                 },
-                                            }}> */}
-                                        <ProjectCard
-                                            doc={doc}
-                                            key={index}
-                                            projectTitle={doc.data.name}
-                                            img={doc.data.imageURL}
-                                        />
-                                        {/* </Link> */}
+                                            }}>
+                                            <ProjectCard
+                                                doc={doc}
+                                                key={index}
+                                                projectTitle={doc.data.name}
+                                                img={doc.data.imageURL}
+                                            />
+                                        </Link>
                                         {role === "admin" ? (
                                             <Grid item lg={12}>
                                                 <>

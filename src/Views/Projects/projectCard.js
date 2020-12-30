@@ -16,19 +16,19 @@ function ProjectCard(props) {
     const classes = styles();
     const history = useHistory();
 
-    const handleProjectRedirection = (doc) => {
-        console.log("Redirecting");
-        history.push({
-            pathname: "/project/" + doc.id,
-            state: {
-                projectTitle: doc.data.name,
-                projectId: doc.id,
-                projectDetailsId: doc.data.projectDetails,
-            },
-        });
-    };
+    // const handleProjectRedirection = (doc) => {
+    //     console.log("Redirecting");
+    //     history.push({
+    //         pathname: "/project/" + doc.id,
+    //         state: {
+    //             projectTitle: doc.data.name,
+    //             projectId: doc.id,
+    //             projectDetailsId: doc.data.projectDetails,
+    //         },
+    //     });
+    // };
     return (
-        <Card onClick={() => handleProjectRedirection(props.doc)}>
+        <Card /*onClick={() => handleProjectRedirection(props.doc)}*/>
             <CardActionArea>
                 <CardMedia
                     className={classes.img}
