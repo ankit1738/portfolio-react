@@ -23,7 +23,6 @@ function Header() {
     };
 
     const handleAdminAccess = () => {
-        console.log("here");
         history.push("/adminLogin");
     };
 

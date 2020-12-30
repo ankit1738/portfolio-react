@@ -15,7 +15,6 @@ function Project() {
     const { role } = useContext(RoleContext);
 
     const history = useHistory();
-    console.log(location);
     const handleAdd = () => {
         history.push({
             pathname: "/addEditProjectDetails",
@@ -78,13 +77,17 @@ function Project() {
                         Technology:
                     </Typography>
                     <ul>
-                        {projectData.technologies?.split(", ").map((data) => {
-                            return (
-                                <li>
-                                    <Typography variant="p">{data}</Typography>
-                                </li>
-                            );
-                        })}
+                        {projectData.technologies
+                            ?.split(", ")
+                            .map((data, index) => {
+                                return (
+                                    <li key={index}>
+                                        <Typography variant="p">
+                                            {data}
+                                        </Typography>
+                                    </li>
+                                );
+                            })}
                     </ul>
                 </Grid>
                 <Grid item sm={12} xs={12}>

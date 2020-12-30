@@ -10,12 +10,25 @@ import {
     Typography,
 } from "@material-ui/core";
 import { useStyles as styles } from "./styles";
+import { useHistory } from "react-router-dom";
 
 function ProjectCard(props) {
     const classes = styles();
+    const history = useHistory();
 
+    const handleProjectRedirection = (doc) => {
+        console.log("Redirecting");
+        history.push({
+            pathname: "/project/" + doc.id,
+            state: {
+                projectTitle: doc.data.name,
+                projectId: doc.id,
+                projectDetailsId: doc.data.projectDetails,
+            },
+        });
+    };
     return (
-        <Card>
+        <Card onClick={() => handleProjectRedirection(props.doc)}>
             <CardActionArea>
                 <CardMedia
                     className={classes.img}

@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Container, Divider, Grid, Button } from "@material-ui/core";
 import { useStyles as styles } from "./styles";
 import ProjectCard from "./projectCard";
-import Flip from "react-reveal/Flip";
-import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { StyledTypography as Typography } from "../../styles";
@@ -21,7 +19,6 @@ function Projects() {
     const { role } = useContext(RoleContext);
 
     const edit = (id) => {
-        console.log(id);
         setEditData(projectsData.find((item) => item.id === id));
         setOpenEditModal(true);
     };
@@ -67,8 +64,8 @@ function Projects() {
                 });
         }
     };
+
     useEffect(() => {
-        console.log("REnder");
         let data = [];
         firebase.db
             .collection("Projects")
@@ -115,22 +112,23 @@ function Projects() {
                             {projectsData.map((doc, index) => {
                                 return (
                                     <Grid item md={4} key={doc.id}>
-                                        <Link
+                                        {/* <Link
                                             to={{
-                                                pathname: "project/" + doc.id,
+                                                pathname: "/project/" + doc.id,
                                                 state: {
                                                     projectTitle: doc.data.name,
                                                     projectId: doc.id,
                                                     projectDetailsId:
                                                         doc.data.projectDetails,
                                                 },
-                                            }}>
-                                            <ProjectCard
-                                                key={index}
-                                                projectTitle={doc.data.name}
-                                                img={doc.data.imageURL}
-                                            />
-                                        </Link>
+                                            }}> */}
+                                        <ProjectCard
+                                            doc={doc}
+                                            key={index}
+                                            projectTitle={doc.data.name}
+                                            img={doc.data.imageURL}
+                                        />
+                                        {/* </Link> */}
                                         {role === "admin" ? (
                                             <Grid item lg={12}>
                                                 <>
