@@ -11,10 +11,14 @@ export const useStyles = makeStyles((theme) =>
         },
         divider: {
             height: "2px",
-            background: theme.secondary,
+            background: theme.orange,
             width: "100%",
         },
+        titleGrid: {
+            flex: 1,
+        },
         headingGrid: {
+            flex: 1,
             display: "flex",
             alignItems: "center",
         },
@@ -51,6 +55,9 @@ export const useStyles = makeStyles((theme) =>
         },
         centre: {
             textAlign: "center",
+        },
+        padding: {
+            padding: "3% 2%",
         },
     })
 );

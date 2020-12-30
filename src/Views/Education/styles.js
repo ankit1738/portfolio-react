@@ -14,8 +14,12 @@ export const useStyles = makeStyles((theme) =>
             width: "100%",
         },
         headingGrid: {
+            flex: 1,
             display: "flex",
             alignItems: "center",
+        },
+        titleGrid: {
+            flex: 1,
         },
         contentContainer: {
             marginTop: "20px",

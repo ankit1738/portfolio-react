@@ -73,7 +73,7 @@ function Skills() {
     return (
         <Container maxWidth="lg" className={classes.root}>
             <Grid container>
-                <Grid item lg={3} md={3}>
+                <Grid item lg={3} md={3} className={classes.titleGrid}>
                     <Typography variant="h4" className={classes.heading}>
                         Technical Skills
                     </Typography>

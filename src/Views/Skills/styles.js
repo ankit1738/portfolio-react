@@ -14,7 +14,11 @@ export const useStyles = makeStyles((theme) =>
             background: theme.orange + `!important`,
             width: "100%",
         },
+        titleGrid: {
+            flex: 1,
+        },
         headingGrid: {
+            flex: 1,
             display: "flex",
             alignItems: "center",
         },

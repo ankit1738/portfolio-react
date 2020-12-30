@@ -78,7 +78,7 @@ function Experience() {
     return (
         <Container maxWidth="lg" className={classes.root}>
             <Grid container>
-                <Grid item md={2}>
+                <Grid item md={2} className={classes.titleGrid}>
                     <Typography variant="h4" className={classes.heading}>
                         Experience
                     </Typography>
@@ -94,7 +94,12 @@ function Experience() {
                         ""
                     )}
                 </Grid>
-                <Grid item md={10} className={classes.contentContainer}>
+                <Grid
+                    item
+                    md={10}
+                    className={
+                        (classes.contentContainer, classes.dividerContainer)
+                    }>
                     <Divider className={classes.divider} />
                 </Grid>
             </Grid>

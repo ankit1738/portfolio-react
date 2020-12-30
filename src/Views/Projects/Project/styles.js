@@ -53,5 +53,11 @@ export const useStyles = makeStyles((theme) =>
             whiteSpace: "pre-wrap",
             fontFamily: "Roboto, sans-serif",
         },
+        marginTop: {
+            marginTop: "48px",
+        },
+        buttonMargin: {
+            margin: "36px 0",
+        },
     })
 );

@@ -98,27 +98,41 @@ function Header() {
                                     className={classes.drawer}
                                     anchor="right"
                                     open={isOpen}
-                                    onClose={toggleDrawer}
-                                    onClick={toggleDrawer}>
+                                    onClose={toggleDrawer}>
                                     {/* <p>
                                         <CloseIcon styles={{ fontSize: 25 }} />
                                     </p> */}
                                     {/* <div
                                         onClick={toggleDrawer}
                                         role="presentation"> */}
-                                    <Link underline="none" href="#education">
+                                    <Link
+                                        underline="none"
+                                        href="#education"
+                                        onClick={toggleDrawer}>
                                         Education
                                     </Link>
-                                    <Link underline="none" href="#experience">
+                                    <Link
+                                        underline="none"
+                                        href="#experience"
+                                        onClick={toggleDrawer}>
                                         Experience
                                     </Link>
-                                    <Link underline="none" href="#skills">
+                                    <Link
+                                        underline="none"
+                                        href="#skills"
+                                        onClick={toggleDrawer}>
                                         Skills
                                     </Link>
-                                    <Link underline="none" href="#projects">
+                                    <Link
+                                        underline="none"
+                                        href="#projects"
+                                        onClick={toggleDrawer}>
                                         Projects
                                     </Link>
-                                    <Link underline="none" href="#contact">
+                                    <Link
+                                        underline="none"
+                                        href="#contact"
+                                        onClick={toggleDrawer}>
                                         Contact
                                     </Link>
                                     {role === "admin" ? (

@@ -63,7 +63,9 @@ function Project() {
                     )}
                 </Grid>
                 <Grid item sm={12} xs={12}>
-                    <Typography variant="h5" className={classes.orange}>
+                    <Typography
+                        variant="h5"
+                        className={`${classes.orange} ${classes.marginTop}`}>
                         About:
                     </Typography>
                     <Typography variant="body1">
@@ -73,7 +75,9 @@ function Project() {
                     </Typography>
                 </Grid>
                 <Grid item sm={12} xs={12}>
-                    <Typography variant="h5" className={classes.orange}>
+                    <Typography
+                        variant="h5"
+                        className={`${classes.orange} ${classes.marginTop}`}>
                         Technology:
                     </Typography>
                     <ul>
@@ -91,7 +95,9 @@ function Project() {
                     </ul>
                 </Grid>
                 <Grid item sm={12} xs={12}>
-                    <Typography variant="h5" className={classes.orange}>
+                    <Typography
+                        variant="h5"
+                        className={`${classes.orange} ${classes.marginTop}`}>
                         Demo Link:{" "}
                     </Typography>
                     <Typography variant="p">
@@ -105,7 +111,9 @@ function Project() {
                     </Typography>
                 </Grid>
                 <Grid item sm={12} xs={12}>
-                    <Typography variant="h5" className={classes.orange}>
+                    <Typography
+                        variant="h5"
+                        className={`${classes.orange} ${classes.marginTop}`}>
                         Github Link:
                     </Typography>
                     <Typography variant="p">
@@ -118,7 +126,7 @@ function Project() {
                         </a>
                     </Typography>
                 </Grid>
-                <Grid item sm={12} xs={12}>
+                <Grid item sm={12} xs={12} className={classes.buttonMargin}>
                     <Link to="/#projects">
                         <Button
                             size="small"

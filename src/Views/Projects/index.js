@@ -85,7 +85,7 @@ function Projects() {
     return (
         <Container maxWidth="lg" className={classes.root}>
             <Grid container>
-                <Grid item lg={2} md={2}>
+                <Grid item lg={2} md={2} className={classes.titleGrid}>
                     <Typography variant="h4" className={classes.heading}>
                         Projects
                     </Typography>
@@ -111,7 +111,11 @@ function Projects() {
                         <Grid container justify="space-between">
                             {projectsData.map((doc, index) => {
                                 return (
-                                    <Grid item md={4} key={doc.id}>
+                                    <Grid
+                                        item
+                                        md={4}
+                                        key={doc.id}
+                                        className={classes.padding}>
                                         <Link
                                             to={{
                                                 pathname: "/project/" + doc.id,

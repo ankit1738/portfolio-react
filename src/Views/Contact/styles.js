@@ -6,11 +6,11 @@ export const useStyles = makeStyles((theme) =>
         },
         heading: {
             textAlign: "center",
-            color: theme.secondary,
+            color: theme.orange,
         },
         divider: {
             height: "2px",
-            background: theme.secondary,
+            background: theme.orange,
             width: "100%",
         },
         headingGrid: {

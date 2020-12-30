@@ -10,11 +10,19 @@ export const useStyles = makeStyles((theme) =>
             color: theme.orange + `!important`,
         },
         divider: {
+            flex: 1,
             height: "2px",
             background: theme.orange + `!important`,
             width: "100%",
         },
-
+        dividerContainer: {
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+        },
+        titleGrid: {
+            flex: 1,
+        },
         contentContainer: {
             marginTop: "20px",
         },

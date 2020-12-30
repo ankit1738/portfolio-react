@@ -77,7 +77,7 @@ function About() {
     return (
         <Container maxWidth="lg" className={classes.root}>
             <Grid container>
-                <Grid item lg={2}>
+                <Grid item lg={2} className={classes.titleGrid}>
                     <Typography variant="h4" className={classes.heading}>
                         Education
                     </Typography>
