@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Mantra Labs Global",
+        "designation": "Software Engineer",
+        "type": "Full Time",
+        "startDate": "Jun 2020",
+        "endDate": "Present",
+        "desc": "Hired as a full stack developer I am mapped to project Globalize and working on Reactjs for frontend developement",
+        "location": "Bengaluru, Karnataka"
+    },
+    {
+        "name": "TekSystems",
+        "designation": "Associate Engineer",
+        "type": "Full Time",
+        "startDate": "Aug 2019",
+        "endDate": "Jun 2020",
+        "desc": "● Worked as a Full Stack developer for adding new features to project \"Marathon\".\n● Learnt about the developement and deploying process of a live project.\n● Tech Stack - Javascript, .Net and EF6 Core.",
+        "location": "Bengaluru, Karnataka"
+    },
+    {
+        "name": "TekSystems",
+        "designation": "Project Trainee",
+        "type": "Full Time",
+        "startDate": "Jan 2019",
+        "endDate": "Aug 2020",
+        "desc": "● Successfully develped TEKSystem's internal social media website called \"TEKOne\"\n● Our team completed this intenship task before the deadline and deployed the first version.\n● I was responsible for both frontend and backend developement of various feature modules.\n● Tech Stack - Nodejs, Angular 7 and MongoDB.",
+        "location": "Bengaluru, Karnataka"
+    }
+]

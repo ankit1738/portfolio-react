@@ -1,0 +1,31 @@
+[
+    {
+        "name": "Lovely Professiona University",
+        "degree": "Bachelor of Technology",
+        "course": "Computer Science and Engineering",
+        "grade": "8.7",
+        "gradePoint": "CGPA",
+        "startDate": "2015",
+        "endDate": "2019",
+        "location": "Jalandhar, Punjab"
+    },
+    {
+        "name": "Kendriya Vidayalaya Sulur, Tamil Nadu",
+        "degree": "Class XII",
+        "course": "Science",
+        "grade": "87",
+        "gradePoint": "%",
+        "startDate": "2013",
+        "endDate": "2014",
+        "location": "Coimbatore, TN"
+    },
+    {
+        "name": "Kendriya Vidayalaya Cooch Behar, West Bengal",
+        "degree": "Class X",
+        "grade": "9.2",
+        "gradePoint": "CGPA",
+        "startDate": "2011",
+        "endDate": "2012",
+        "location": "Cooch Behar, West Bengal"
+    }
+]
